@@ -1,0 +1,77 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+    <!--Correção do template, por Sanderson Soares-->
+    <script>
+        $(document).click(function (e) {
+            $("#menu-button").triggerHandler(function () {
+                if ($("#menu-button").hasClass("active-menu")) {
+                    $("#menu-button").removeClass("active-menu");
+                } else {
+                    $("#menu-button").addClass("active-menu");
+                }
+
+                if ($("#layout-menu-cover").hasClass("active-menu")) {
+                    $("#layout-menu-cover").removeClass("active-menu");
+                } else {
+                    $("#layout-menu-cover").addClass("active-menu");
+                }
+            });
+        });
+    </script>
+
+    <!-- TOPO START -->
+    <h:form id="form-topo">
+        <div id="layout-topbar" style="margin-bottom: 200px;">
+            <a id="menu-button" class="Animated1">
+                <span id="menuline1" class="Animated05"></span>
+                <span id="menuline2" class="Animated05"></span>
+                <span id="menuline3" class="Animated05"></span>
+            </a>
+            <a href="#"><p:graphicImage library="img" name="logo.png" style="margin: 20px" width="50px"/></a>
+            <ul id="top-menu">
+                <li>
+                    <a><i class="icon-user2 MarRight10"></i> <span><p:outputLabel value="#{requestBean.usuarioLogado.nome}"/> </span></a>
+
+                </li>
+                <li>
+                    <h:commandLink class="menulink" action="#{requestBean.logout()}" immediate="true">
+                        <i class="fa fa-close MarRight10"></i> <span>Sair</span>
+                    </h:commandLink>
+                </li>
+            </ul>
+        </div>
+    </h:form>
+    <!-- TOPO END -->
+
+    <div id="layout-menu-cover" class="layout-menu-cover-left ps-container Animated05">
+        <h:form id="form-sidebar">
+            <ul class="layout-menu">
+                <li>
+                    <p:commandLink class="menulink" action="#{linkUtilBean.paginaPrincipal()}">
+                        <i class="icon-home MarRight10"></i> Dashboard
+                    </p:commandLink>
+                </li>
+                <li>
+                    <h:commandLink action="#{linkUtilBean.listaClientes()}" rendered="#{request.isUserInRole('ROLE_VISUALIZAR_CLIENTES')}">
+                        <i class="icon-user MarRight10"></i> Clientes
+                    </h:commandLink>
+                </li>
+                <li>
+                    <p:commandLink class="menulink" action="#{linkUtilBean.listaUsuarios()}" rendered="#{request.isUserInRole('ROLE_VISUALIZAR_USUARIOS')}">
+                        <i class="icon-user2 MarRight10"></i> Usuários
+                    </p:commandLink>
+                </li>
+                <li>
+                    <h:commandLink action="#{linkUtilBean.listaGrupos()}" rendered="#{request.isUserInRole('ROLE_VISUALIZAR_GRUPOS')}">
+                        <i class="icon-users MarRight10"></i> Grupos
+                    </h:commandLink>    
+                </li>
+            </ul>
+        </h:form>
+    </div>
+
+</ui:composition>

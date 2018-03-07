@@ -1,0 +1,113 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/WEB-INF/templates/template.xhtml"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+
+        <h:form>
+            <div class="ui-g ui-fluid">
+                <div class="ui-g-12">
+                    <p:breadCrumb>
+                        <p:menuitem value="Home" action="#{linkUtilBean.paginaPrincipal()}" immediate="true"/>
+                        <p:menuitem value="Grupos" action="#{linkUtilBean.listaGrupos()}" />
+                        <p:menuitem value="#{grupoBean.grupo.id == null ? 'Cadastrar' : 'Alterar'}"/>
+                    </p:breadCrumb>
+                </div>
+
+                <div class="ui-g-12">
+                    <p:messages autoUpdate="true" showIcon="true" closable="true"/>
+                </div>
+
+                <div class="ui-g-12">
+                    <div class="Card">
+                        <div class="CardTopic">Informações do Grupo</div>
+                        <div class="SeparatorFull"></div>
+
+                        <div class="ui-g-12">
+                            <p:outputLabel for="titulo" value="Título do Grupo"/>
+                            <p:inputText id="titulo" value="#{grupoBean.grupo.titulo}" required="true"/>
+                        </div>
+
+                        <div class="ui-g-12 CardTopic MarTop40">Permissões</div>
+                        <div class="EmptyBox5"></div>
+                        <div class="SeparatorFull"></div>
+
+                        <div class="ui-g-12">
+                            <p:tabView>
+                                <p:tab title="Gerencial">
+                                    <!--Clientes-->
+                                    <p:panel header="Clientes">
+                                        <p:panelGrid columns="5" styleClass="ui-panelgrid-blank" class="PadWithBorder10" layout="grid">
+                                            <p:selectBooleanCheckbox itemLabel="CADASTRA CLIENTES" value="#{grupoBean.permissoesUtil.cadastroClientes}" />
+                                            <p:selectBooleanCheckbox itemLabel="VISUALIZA CLIENTES" value="#{grupoBean.permissoesUtil.visualizarClientes}" />
+                                            <p:selectBooleanCheckbox itemLabel="ALTERA CLIENTES" value="#{grupoBean.permissoesUtil.alterarClientes}" />
+                                            <p:selectBooleanCheckbox itemLabel="REMOVE CLIENTES" value="#{grupoBean.permissoesUtil.removerClientes}" />
+                                        </p:panelGrid>
+                                    </p:panel>
+
+                                </p:tab>
+                                <p:tab title="Administrativo">
+                                    <!--Usuários-->
+                                    <p:panel header="Usuários">
+                                        <p:panelGrid columns="5" styleClass="ui-panelgrid-blank" class="PadWithBorder10" layout="grid">
+                                            <p:selectBooleanCheckbox itemLabel="CADASTRA USUÁRIOS" value="#{grupoBean.permissoesUtil.cadastroUsuarios}" />
+                                            <p:selectBooleanCheckbox itemLabel="VISUALIZA USUÁRIOS" value="#{grupoBean.permissoesUtil.visualizarUsuarios}" />
+                                            <p:selectBooleanCheckbox itemLabel="ALTERA USUÁRIOS" value="#{grupoBean.permissoesUtil.alterarUsuarios}" />
+                                            <p:selectBooleanCheckbox itemLabel="REMOVE USUÁRIOS" value="#{grupoBean.permissoesUtil.removerUsuarios}" />
+                                        </p:panelGrid>
+                                    </p:panel>
+
+                                    <!--Grupos-->
+                                    <p:panel header="Grupos">
+                                        <p:panelGrid columns="5" styleClass="ui-panelgrid-blank" class="PadWithBorder10" layout="grid">
+                                            <p:selectBooleanCheckbox itemLabel="CADASTRA GRUPOS" value="#{grupoBean.permissoesUtil.cadastroGrupos}" />
+                                            <p:selectBooleanCheckbox itemLabel="VISUALIZA GRUPOS" value="#{grupoBean.permissoesUtil.visualizarGrupos}" />
+                                            <p:selectBooleanCheckbox itemLabel="ALTERA GRUPOS" value="#{grupoBean.permissoesUtil.alterarGrupos}" />
+                                            <p:selectBooleanCheckbox itemLabel="REMOVE GRUPOS" value="#{grupoBean.permissoesUtil.removerGrupos}" />
+                                        </p:panelGrid>
+                                    </p:panel>
+                                </p:tab>
+                            </p:tabView>
+                        </div>
+
+                        <div class="EmptyBox10"></div>
+                        <div class="Separator"></div>
+
+                        <div class="ui-g-12">
+                            <p:commandButton class="ui-button-icon-only RedButton" icon="fa fa-close"
+                                             action="#{linkUtilBean.listaGrupos()}" immediate="true">
+                            </p:commandButton>
+
+                            <p:commandButton class="ui-button-icon-only Fright" icon="fa #{grupoBean.grupo.id == null ? 'fa-check' : 'fa-refresh'}"
+                                             action="#{grupoBean.salvar()}">
+                            </p:commandButton>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </h:form>
+
+        <!--Dialog Sucesso-->
+        <p:dialog header="Sucesso" widgetVar="sucess-dlg" modal="true" draggable="false"
+                  responsive="true" width="400" resizable="false" closable="false">
+            <div class="ui-g">
+                <div class="ui-g-12 TexAlCenter">
+                    <i class="fa fa-check-circle-o Fs30 TexAlCenter"></i>
+                    <h4 class="TexAlCenter">Dados #{grupoBean.grupo.id == null ? 'Salvos' : 'Alterados'} com Sucesso!</h4>
+                </div>
+                <div class="Separator"></div>
+                <div class="ui-g-12">
+                    <h:form>
+                        <p:commandButton class="GreenButton ui-g-12" value="OK"
+                                         action="#{linkUtilBean.listaGrupos()}" immediate="true">
+                        </p:commandButton>
+                    </h:form>
+                </div>
+            </div>
+        </p:dialog>
+
+    </ui:define>
+</ui:composition>

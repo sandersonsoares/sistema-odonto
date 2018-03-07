@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Sistema Odontológico</title>
+
+        <f:facet name="first">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <meta name="viewport"
+                  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+            <meta name="apple-mobile-web-app-capable" content="yes" />
+        </f:facet>
+    </h:head>
+    <h:body>
+
+        <div class="Wid90 DispBlock MarAuto MarTopPerc5 TexAlCenter">
+            <div class="Wid33 MarAuto WidAutoOnMobile">
+                <h:form id="form-login">
+                    <div class="EmptyBox120"></div>
+                    <div class="Card ShadowEffect">
+                        <div class="EmptyBox20" />
+                        <center>
+                            <div class="Wid100 OvHidden">
+                                <h:panelGrid columns="2">
+                                    <img src="resources/img/logo.png" width="100vw" style="margin: 20px" />
+                                </h:panelGrid>
+                            </div>
+                        </center>
+                        <div class="EmptyBox10" />
+                        <i class="icon-vpn_key Fs30 BoldGray DispBlock Orange"></i><div class="Container100 Fs30 FontRobotoLight Orange"> Login </div>
+                        <div class="EmptyBox30"></div>
+                        <div class="ui-g ui-fluid">
+                            <div class="ui-g-12">
+                                <p:messages showDetail="false" autoUpdate="true" /> 
+                            </div>
+                            <div class="ui-g-12">
+                                <p:outputLabel for="j_username" value="Nome de Usuário ou Email"/>
+                                <p:inputText id="j_username" value="#{requestBean.user}" required="true" requiredMessage="O campo de usuário está vazio!"/>                            
+                            </div>
+
+                            <div class="ui-g-12">
+                                <p:outputLabel for="j_password" value="Senha"/>
+                                <p:password id="j_password" value="#{requestBean.senha}" required="true" requiredMessage="O campo de senha está vazio!" />
+                            </div>
+                        </div>
+                        <p class="Fright">
+                            <p:commandLink value="Esqueci minha senha" actionListener="#" />
+                        </p>
+                        <div class="ui-g-12">
+                            <p:commandButton id="btn-entrar" class="ui-g-12" value="Login" icon="fa fa-sign-in" action="#{requestBean.login()}" ajax="false"/>
+
+                            <p:outputPanel>
+                                <f:metadata>  
+                                    <f:event type="preRenderView" listener="#{loginBean.mostrarErro(param['i'])}"/>  
+                                </f:metadata> 
+                            </p:outputPanel>
+
+                            <p:defaultCommand target="btn-entrar" />
+                        </div>
+                    </div>
+                    <div class="EmptyBox20"></div>
+                </h:form>
+            </div>
+        </div>
+
+        <h:outputScript name="js/ripple-effect.js" library="adamantium-layout" />
+        <h:outputScript name="js/perfect-scrollbar.js"
+                        library="adamantium-layout" />
+        <h:outputScript name="js/layout.js" library="adamantium-layout" />
+        <h:outputScript name="jquery/jquery.js" library="primefaces" />
+        <h:outputStylesheet name="css/core-layout.css"
+                            library="adamantium-layout" />
+        <h:outputStylesheet name="css/animate.css" library="adamantium-layout" />
+        <h:outputStylesheet name="css/adamantium-font.css"
+                            library="adamantium-layout" />
+        <h:outputStylesheet name="css/ripple-effect.css"
+                            library="adamantium-layout" />
+        <h:outputStylesheet name="css/perfect-scrollbar.css"
+                            library="adamantium-layout" />
+        <h:outputStylesheet name="css/font-awesome.css"
+                            library="adamantium-layout" />
+        <h:outputStylesheet name="css/adamantium-layout.css"
+                            library="adamantium-layout" />
+        <h:outputStylesheet name="css/estilos.css"
+                            library="adamantium-layout" />
+
+    </h:body>
+</html>

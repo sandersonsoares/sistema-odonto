@@ -1,0 +1,163 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/WEB-INF/templates/template.xhtml"
+                xmlns:p="http://primefaces.org/ui">
+    <ui:define name="content">
+        <h:form>
+            <div class="ui-g ui-fluid">
+                <div class="ui-g-12">
+                    <p:breadCrumb>
+                        <p:menuitem value="Home" action="#{linkUtilBean.paginaPrincipal()}" immediate="true"/>
+                        <p:menuitem value="Usuários" action="#{linkUtilBean.listaUsuarios()}" immediate="true"/>
+                        <p:menuitem value="#{usuarioBean.usuario.id == null ? 'Cadastrar' : 'Alterar'}"/>
+                    </p:breadCrumb>
+                </div>
+                
+                <div class="ui-g-12">
+                    <p:messages autoUpdate="true" showIcon="true" closable="true"/>
+                </div>
+
+                <div class="ui-g-12">
+                    <div class="Card">
+                        <div class="CardTopic">Dados Pessoais</div>
+                        <div class="SeparatorFull"></div>
+
+                        <div class="ui-g-12 ui-md-4">
+                            <p:outputLabel for="cpf" value="CPF"/>
+                            <p:inputMask  mask="999.999.999-99" id="cpf" value="#{usuarioBean.usuario.cpf}" required="true" requiredMessage="Campo CPF está vazio!"/>
+                        </div>
+                        <div class="ui-g-12 ui-md-4">
+                            <p:outputLabel for="nome" value="Nome"/>
+                            <p:inputText  id="nome" value="#{usuarioBean.usuario.nome}" required="true" requiredMessage="Campo Nome está vazio!"/>
+                        </div>
+                        <div class="ui-g-12 ui-md-4">
+                            <p:outputLabel for="tel" value="Telefone"/>
+                            <p:inputMask  id="tel" mask="(99) 9999-9999" value="#{usuarioBean.usuario.telefone}" required="true" requiredMessage="Campo Telefone está vazio!"/>
+                        </div>
+                        <div class="ui-g-12 ui-md-4">
+                            <p:outputLabel value="Sexo" for="sexo" />
+                            <p:selectOneMenu id="sexo"  value="#{usuarioBean.usuario.sexo}" required="true" requiredMessage="Campo Sexo está vazio!">
+                                <f:selectItem itemDisabled="true" itemLabel="Selecione"/>
+                                <f:selectItems value="#{usuarioBean.listarSexos}" var="s" itemLabel="#{s.sexo}" itemValue="#{sexo}"/>
+                            </p:selectOneMenu>
+                        </div>
+                        <div class="ui-g-12 ui-md-4">
+                            <p:outputLabel for="datetime" value="Data de Nascimento" />
+                            <p:calendar id="datetime"  value="#{usuarioBean.usuario.dataNascimento}" navigator="true" pattern="dd/MM/yyyy" showOn="button"/>
+                        </div>
+                        
+                        <div class="ui-g-12 CardTopic MarTop40">Acesso ao Sistema</div>
+                        <div class="EmptyBox5"></div>
+                        <div class="SeparatorFull"></div>
+
+                        <div class="ui-g-12 ui-md-4">
+                            <p:outputLabel for="user" value="Nome de Usuário"/>
+                            <p:inputText  id="user" value="#{usuarioBean.usuario.username}" 
+                                         required="true" requiredMessage="Campo Nome está vazio!"/>
+                        </div>
+                        <div class="ui-g-12 ui-md-4">
+                            <p:outputLabel for="senha" value="Senha"/>
+                            <p:password  id="senha" value="#{usuarioBean.usuario.senha}" disabled="#{usuarioBean.usuario.id != null}"
+                                        required="true" requiredMessage="Campo Nome está vazio!"/>
+                        </div>
+                        <div class="ui-g-12 ui-md-4">
+                            <p:outputLabel for="csenha" value="Confirmar Senha"/>
+                            <p:password  id="csenha" value="#{usuarioBean.usuario.senha}" disabled="#{usuarioBean.usuario.id != null}"
+                                        required="true" requiredMessage="Campo Nome está vazio!"/>
+                        </div>
+                        <div class="ui-g-12 ui-md-6">
+                            <p:outputLabel for="email" value="Email" />
+                            <p:inputText  id="email" value="#{usuarioBean.usuario.email}" required="true" requiredMessage="Campo Email está vazio!"/>
+                        </div>
+                        <div class="ui-g-12 ui-md-6">
+                            <p:outputLabel for="grupos" value="Grupos" />
+                            <p:selectOneMenu  id="grupos" value="#{usuarioBean.usuario.grupo}"
+                                             converter="GrupoConverter">
+                                <f:selectItem  itemDisabled="true" itemLabel="Selecione"/>
+                                <f:selectItems value="#{grupoBean.grupos}" var="grupo" itemValue="#{grupo}" itemLabel="#{grupo.titulo}"/>
+                            </p:selectOneMenu>
+                        </div>
+
+                        <div class="ui-g-12 CardTopic MarTop40">Endereço</div>
+                        <div class="EmptyBox5"></div>
+                        <div class="SeparatorFull"></div>
+
+                        <div class="ui-g-12 ui-md-6">
+                            <p:outputLabel for="rua" value="Logradouro"/>
+                            <p:inputText  id="rua" value="#{usuarioBean.usuario.endereco.logradouro}" required="true" requiredMessage="Campo Lugradouro está vazio!"/>
+                        </div>
+                        <div class="ui-g-12 ui-md-3">
+                            <p:outputLabel for="num" value="Número" />
+                            <p:inputText id="num" value="#{usuarioBean.usuario.endereco.numero}"/>
+                        </div>
+
+                        <div class="ui-g-12 ui-md-3">
+                            <p:outputLabel for="bairro" value="Bairro"/>
+                            <p:inputText id="bairro" value="#{usuarioBean.usuario.endereco.bairro}" required="true" requiredMessage="Campo Bairro está vazio!"/>
+                        </div>
+                        <div class="ui-g-12 ui-md-3">
+                            <p:outputLabel for="cep" value="Cep"/>
+                            <p:inputMask id="cep" mask="99999-999" value="#{usuarioBean.usuario.endereco.cep}"  class="validate" required="true" requiredMessage="Campo CEP está vazio!"/>
+                        </div>
+                        <div class="ui-g-12 ui-md-3">
+                            <p:outputLabel for="cidade" value="Cidade"/>
+                            <p:inputText id="cidade" value="#{usuarioBean.usuario.endereco.cidade}"  class="validate" required="true" requiredMessage="Campo Cidade está vazio!"/>
+                        </div>
+                        <div class="ui-g-12 ui-md-2">
+                            <p:outputLabel for="uf" value="Estado"/>
+                            <p:selectOneMenu id="uf" value="#{usuarioBean.usuario.endereco.estado}">
+                                <f:selectItem itemDisabled="true" itemLabel="Selecione" />
+                                <f:selectItems value="#{usuarioBean.listarEstados}" var="estado" itemValue="#{estado}" itemLabel="#{estado.sigla}" />
+                            </p:selectOneMenu>
+                        </div>
+                        <div class="ui-g-12 ui-md-4">
+                            <p:outputLabel for="comp" value="Complemento"/>
+                            <p:inputText id="comp" value="#{usuarioBean.usuario.endereco.complemento}"/>
+                        </div>
+                        <div class="ui-g-12">
+                            <p:outputLabel for="ponto" value="Ponto de Referência"/>
+                            <p:inputText id="ponto" value="#{usuarioBean.usuario.endereco.pontoReferencia}" />
+                        </div>
+                        
+                        <div class="EmptyBox10"></div>
+                        <div class="Separator"></div>
+
+                        <div class="ui-g-12">
+                            <p:commandButton class="ui-button-icon-only RedButton" icon="fa fa-close"
+                                             action="#{linkUtilBean.listaUsuarios()}" immediate="true">
+                            </p:commandButton>
+
+                            <p:commandButton class="ui-button-icon-only Fright" icon="fa #{usuarioBean.usuario.id == null ? 'fa-check' : 'fa-refresh'}"
+                                             action="#{usuarioBean.salvar()}">
+                            </p:commandButton>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </h:form>
+        
+        <!--Dialog Sucesso-->
+        <p:dialog header="Sucesso" widgetVar="sucess-dlg" modal="true" draggable="false"
+                  responsive="true" width="400" resizable="false" closable="false">
+            <div class="ui-g">
+                <div class="ui-g-12 TexAlCenter">
+                    <i class="fa fa-check-circle-o Fs30 TexAlCenter"></i>
+                    <h4 class="TexAlCenter">Dados #{usuarioBean.usuario.id == null ? 'Salvos' : 'Alterados'} com Sucesso!</h4>
+                </div>
+                <div class="Separator"></div>
+                <div class="ui-g-12">
+                    <h:form>
+                        <p:commandButton class="GreenButton ui-g-12" value="OK"
+                                         action="#{linkUtilBean.listaUsuarios()}" immediate="true">
+                        </p:commandButton>
+                    </h:form>
+                </div>
+            </div>
+        </p:dialog>
+        
+    </ui:define>
+</ui:composition>
+
