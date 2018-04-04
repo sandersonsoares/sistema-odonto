@@ -4,6 +4,8 @@ import br.com.odonto.enums.Estados;
 import br.com.odonto.enums.Sexo;
 import br.com.odonto.exception.DAOException;
 import br.com.odonto.facade.Facade;
+import br.com.odonto.model.Cidade;
+import br.com.odonto.model.Estado;
 import br.com.odonto.model.Usuario;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -23,6 +25,8 @@ public class UsuarioBean extends DefaultBean implements Serializable {
     private Usuario usuario;
     private List<Usuario> usuarios;
     private String busca;
+     private List<Cidade> cidadesPorEstado;
+    private List<Estado> estados;
 
     public UsuarioBean() {
         super();
@@ -38,6 +42,7 @@ public class UsuarioBean extends DefaultBean implements Serializable {
                 this.usuario = fachada.buscarUsuario(Long.parseLong(id));
             } else {
                 this.usuario = new Usuario();
+                this.cidadesPorEstado = this.fachada.buscarEstado(this.usuario.getEndereco().getEstado().getId()).getCidades();
             }
             this.usuarios = fachada.listarUsuarios();
         } catch (Exception ex) {
@@ -51,6 +56,14 @@ public class UsuarioBean extends DefaultBean implements Serializable {
 
     public Estados[] getListarEstados() {
         return Estados.values();
+    }
+    
+    public void carregarCidades() {
+        try {
+            this.cidadesPorEstado = this.fachada.buscarEstado(this.usuario.getEndereco().getEstado().getId()).getCidades();
+        } catch (Exception ex) {
+            imprimirErro(ex.getMessage());
+        }
     }
 
     public void salvar() {
@@ -101,6 +114,22 @@ public class UsuarioBean extends DefaultBean implements Serializable {
         this.usuarios = tempList;
     }
 
+    public List<Cidade> getCidadesPorEstado() {
+        return cidadesPorEstado;
+    }
+
+    public void setCidadesPorEstado(List<Cidade> cidadesPorEstado) {
+        this.cidadesPorEstado = cidadesPorEstado;
+    }
+
+    public List<Estado> getEstados() {
+        return estados;
+    }
+
+    public void setEstados(List<Estado> estados) {
+        this.estados = estados;
+    }
+    
     public Usuario getUsuario() {
         return usuario;
     }

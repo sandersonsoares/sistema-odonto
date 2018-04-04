@@ -1,2 +1,4 @@
 build/
 build.xml
+nbproject/private/private_old.xml
+dist/

@@ -1,10 +1,11 @@
 package br.com.odonto.controller;
 
-import br.com.odonto.enums.Estados;
 import br.com.odonto.enums.Sexo;
 import br.com.odonto.exception.DAOException;
 import br.com.odonto.facade.Facade;
+import br.com.odonto.model.Cidade;
 import br.com.odonto.model.Cliente;
+import br.com.odonto.model.Estado;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -18,11 +19,13 @@ import javax.faces.context.FacesContext;
 public class PessoaBean extends DefaultBean {
 
     private Facade fachada;
-    
+
     private Cliente cliente;
     private List<Cliente> clientes;
     private Sexo sexo;
     private String busca;
+    private List<Cidade> cidadesPorEstado;
+    private List<Estado> estados;
 
     public PessoaBean() {
         super();
@@ -36,17 +39,15 @@ public class PessoaBean extends DefaultBean {
         try {
             if (id != null) {
                 this.cliente = this.fachada.buscarCliente(Long.parseLong(id));
+                this.cidadesPorEstado = this.fachada.buscarEstado(this.cliente.getEndereco().getEstado().getId()).getCidades();
             } else {
                 this.cliente = new Cliente();
             }
             clientes = this.fachada.listarClientes();
+            estados = this.fachada.listarEstados();
         } catch (Exception ex) {
             imprimirErro(ex.getMessage());
         }
-    }
-
-    public Estados[] getListarEstados() {
-        return Estados.values();
     }
 
     public void filtraClientes() {
@@ -71,8 +72,8 @@ public class PessoaBean extends DefaultBean {
 
         this.clientes = tempList;
     }
-    
-    public void preparaCliente(Cliente cliente){
+
+    public void preparaCliente(Cliente cliente) {
         this.cliente = cliente;
         abrirDialog("apagar-dlg");
     }
@@ -93,6 +94,14 @@ public class PessoaBean extends DefaultBean {
         } catch (DAOException ex) {
             imprimirErro(ex.getMessage());
             fecharDialog("apagar-dlg");
+        }
+    }
+
+    public void carregarCidades() {
+        try {
+            this.cidadesPorEstado = this.fachada.buscarEstado(this.cliente.getEndereco().getEstado().getId()).getCidades();
+        } catch (Exception ex) {
+            imprimirErro(ex.getMessage());
         }
     }
 
@@ -130,6 +139,22 @@ public class PessoaBean extends DefaultBean {
 
     public void setBusca(String busca) {
         this.busca = busca;
+    }
+
+    public List<Cidade> getCidadesPorEstado() {
+        return cidadesPorEstado;
+    }
+
+    public void setCidadesPorEstado(List<Cidade> cidadesPorEstado) {
+        this.cidadesPorEstado = cidadesPorEstado;
+    }
+
+    public List<Estado> getEstados() {
+        return estados;
+    }
+
+    public void setEstados(List<Estado> estados) {
+        this.estados = estados;
     }
 
 }

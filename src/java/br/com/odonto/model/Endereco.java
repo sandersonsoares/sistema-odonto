@@ -1,18 +1,17 @@
 package br.com.odonto.model;
 
-import br.com.odonto.enums.Estados;
 import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
-public class Endereco implements Serializable{
-    
+public class Endereco implements Serializable {
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String logradouro;
     private int numero;
@@ -20,13 +19,15 @@ public class Endereco implements Serializable{
     private String bairro;
     private String pontoReferencia;
     private String complemento;
-    private String cidade;
-    @Enumerated(EnumType.STRING)
-    private Estados estado;
+    @OneToOne
+    private Estado estado;
+    @OneToOne
+    private Cidade cidade;
 
     public Endereco() {
+        this.estado = new Estado();
     }
-    
+
     public Long getId() {
         return id;
     }
@@ -83,20 +84,20 @@ public class Endereco implements Serializable{
         this.complemento = complemento;
     }
 
-    public String getCidade() {
-        return cidade;
-    }
-
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
-    }
-
-    public Estados getEstado() {
+    public Estado getEstado() {
         return estado;
     }
 
-    public void setEstado(Estados estado) {
+    public void setEstado(Estado estado) {
         this.estado = estado;
+    }
+
+    public Cidade getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(Cidade cidade) {
+        this.cidade = cidade;
     }
 
 }

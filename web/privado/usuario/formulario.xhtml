@@ -84,6 +84,10 @@
                         <div class="EmptyBox5"></div>
                         <div class="SeparatorFull"></div>
 
+                        <div class="ui-g-12 ui-md-3">
+                            <p:outputLabel for="cep" value="CEP"/>
+                            <p:inputMask id="cep" mask="99999-999" value="#{usuarioBean.usuario.endereco.cep}"  class="validate" required="true" requiredMessage="Campo CEP está vazio!"/>
+                        </div>
                         <div class="ui-g-12 ui-md-6">
                             <p:outputLabel for="rua" value="Logradouro"/>
                             <p:inputText  id="rua" value="#{usuarioBean.usuario.endereco.logradouro}" required="true" requiredMessage="Campo Lugradouro está vazio!"/>
@@ -93,23 +97,23 @@
                             <p:inputText id="num" value="#{usuarioBean.usuario.endereco.numero}"/>
                         </div>
 
-                        <div class="ui-g-12 ui-md-3">
+                        <div class="ui-g-12 ui-md-4">
                             <p:outputLabel for="bairro" value="Bairro"/>
                             <p:inputText id="bairro" value="#{usuarioBean.usuario.endereco.bairro}" required="true" requiredMessage="Campo Bairro está vazio!"/>
                         </div>
-                        <div class="ui-g-12 ui-md-3">
-                            <p:outputLabel for="cep" value="Cep"/>
-                            <p:inputMask id="cep" mask="99999-999" value="#{usuarioBean.usuario.endereco.cep}"  class="validate" required="true" requiredMessage="Campo CEP está vazio!"/>
-                        </div>
-                        <div class="ui-g-12 ui-md-3">
-                            <p:outputLabel for="cidade" value="Cidade"/>
-                            <p:inputText id="cidade" value="#{usuarioBean.usuario.endereco.cidade}"  class="validate" required="true" requiredMessage="Campo Cidade está vazio!"/>
-                        </div>
                         <div class="ui-g-12 ui-md-2">
                             <p:outputLabel for="uf" value="Estado"/>
-                            <p:selectOneMenu id="uf" value="#{usuarioBean.usuario.endereco.estado}">
+                            <p:selectOneMenu id="uf" value="#{usuarioBean.usuario.endereco.estado}" filter="true" filterMatchMode="contains" converter="EstadoConverter" required="true">
                                 <f:selectItem itemDisabled="true" itemLabel="Selecione" />
-                                <f:selectItems value="#{usuarioBean.listarEstados}" var="estado" itemValue="#{estado}" itemLabel="#{estado.sigla}" />
+                                <p:ajax event="change" listener="#{usuarioBean.carregarCidades()}" update="cidade"/>
+                                <f:selectItems value="#{usuarioBean.estados}" var="estado" itemValue="#{estado}" itemLabel="#{estado.nome} (#{estado.sigla})"/>
+                            </p:selectOneMenu>
+                        </div>
+                        <div class="ui-g-12 ui-md-2">
+                            <p:outputLabel for="cidade" value="Cidade"/>
+                            <p:selectOneMenu id="cidade" value="#{usuarioBean.usuario.endereco.cidade}" filter="true" filterMatchMode="contains" converter="CidadeConverter" required="true">
+                                <f:selectItem itemDisabled="true" itemLabel="Selecione" />
+                                <f:selectItems value="#{usuarioBean.cidadesPorEstado}" var="cidade" itemValue="#{cidade}" itemLabel="#{cidade.nome}" />
                             </p:selectOneMenu>
                         </div>
                         <div class="ui-g-12 ui-md-4">

@@ -34,5 +34,10 @@ public class DefaultBean implements Serializable {
         RequestContext request = RequestContext.getCurrentInstance();
         request.execute("PF('" + dialog + "').hide()");
     }
+    
+    protected void update(String idComponente) {
+        RequestContext request = RequestContext.getCurrentInstance();
+        request.update(idComponente);
+    }
 
 }
