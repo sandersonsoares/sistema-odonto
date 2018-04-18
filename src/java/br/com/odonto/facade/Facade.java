@@ -3,10 +3,12 @@ package br.com.odonto.facade;
 import br.com.odonto.business.GrupoBusiness;
 import br.com.odonto.business.ClienteBusiness;
 import br.com.odonto.business.EstadoBusiness;
+import br.com.odonto.business.FichaAnamneseBusiness;
 import br.com.odonto.business.UsuarioBusiness;
 import br.com.odonto.exception.DAOException;
 import br.com.odonto.model.Cliente;
 import br.com.odonto.model.Estado;
+import br.com.odonto.model.FichaAnamnese;
 import br.com.odonto.model.Grupo;
 import br.com.odonto.model.Usuario;
 import java.io.Serializable;
@@ -18,12 +20,15 @@ public class Facade implements Serializable {
     private GrupoBusiness grupoBusiness;
     private UsuarioBusiness usuarioBusiness;
     private EstadoBusiness estadoBusiness;
+    private FichaAnamneseBusiness fichaAnamneseBusiness;
 
     public Facade() {
         this.clienteBusiness = new ClienteBusiness();
         this.grupoBusiness = new GrupoBusiness();
         this.usuarioBusiness = new UsuarioBusiness();
         this.estadoBusiness = new EstadoBusiness();
+        this.fichaAnamneseBusiness = new FichaAnamneseBusiness();
+
     }
 
     // Cliente
@@ -100,6 +105,23 @@ public class Facade implements Serializable {
 
     public List<Estado> listarEstados() throws Exception {
         return estadoBusiness.listar();
+    }
+    
+     // Ficha de Anamnese
+    public FichaAnamnese cadastrarFichaAnamnese(FichaAnamnese fichaAnamnese) throws Exception {
+        return fichaAnamneseBusiness.salvar(fichaAnamnese);
+    }
+
+    public FichaAnamnese removerFichaAnamnese(FichaAnamnese fichaAnamnese) throws Exception {
+        return fichaAnamneseBusiness.remover(fichaAnamnese);
+    }
+
+    public FichaAnamnese buscarFichaAnamnese(Long id) throws Exception {
+        return fichaAnamneseBusiness.buscar(id);
+    }
+
+    public List<FichaAnamnese> listarFichaAnamnese() throws Exception {
+        return fichaAnamneseBusiness.listar();
     }
 
 }

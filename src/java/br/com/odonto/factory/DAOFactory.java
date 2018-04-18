@@ -5,6 +5,7 @@ import br.com.odonto.dao.EnderecoDAO;
 import br.com.odonto.dao.GrupoDAO;
 import br.com.odonto.dao.ClienteDAO;
 import br.com.odonto.dao.EstadoDAO;
+import br.com.odonto.dao.FichaAnamneseDAO;
 import br.com.odonto.dao.PessoaDAO;
 import br.com.odonto.dao.UsuarioDAO;
 import br.com.odonto.interfaces.DaoGeneric;
@@ -38,6 +39,10 @@ public class DAOFactory {
 
     public static DaoGeneric createCidadeDAO() {
         return new CidadeDAO();
+    }
+    
+    public static DaoGeneric createFichaAnamneseDAO() {
+        return new FichaAnamneseDAO();
     }
 
 }
