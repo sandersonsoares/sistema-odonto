@@ -1,12 +1,16 @@
 package br.com.odonto.facade;
 
+import br.com.odonto.business.AgendamentoBusiness;
 import br.com.odonto.business.GrupoBusiness;
 import br.com.odonto.business.ClienteBusiness;
+import br.com.odonto.business.DentistaBusiness;
 import br.com.odonto.business.EstadoBusiness;
 import br.com.odonto.business.FichaAnamneseBusiness;
 import br.com.odonto.business.UsuarioBusiness;
 import br.com.odonto.exception.DAOException;
+import br.com.odonto.model.Agendamento;
 import br.com.odonto.model.Cliente;
+import br.com.odonto.model.Dentista;
 import br.com.odonto.model.Estado;
 import br.com.odonto.model.FichaAnamnese;
 import br.com.odonto.model.Grupo;
@@ -21,6 +25,8 @@ public class Facade implements Serializable {
     private UsuarioBusiness usuarioBusiness;
     private EstadoBusiness estadoBusiness;
     private FichaAnamneseBusiness fichaAnamneseBusiness;
+    private DentistaBusiness dentistaBusiness;
+    private AgendamentoBusiness agendamentoBusiness;
 
     public Facade() {
         this.clienteBusiness = new ClienteBusiness();
@@ -28,6 +34,8 @@ public class Facade implements Serializable {
         this.usuarioBusiness = new UsuarioBusiness();
         this.estadoBusiness = new EstadoBusiness();
         this.fichaAnamneseBusiness = new FichaAnamneseBusiness();
+        this.dentistaBusiness = new DentistaBusiness();
+        this.agendamentoBusiness = new AgendamentoBusiness();
 
     }
 
@@ -46,6 +54,40 @@ public class Facade implements Serializable {
 
     public List<Cliente> listarClientes() throws DAOException {
         return clienteBusiness.listar();
+    }
+
+    // Dentista
+    public Dentista cadastrarDentista(Dentista dentista) throws DAOException {
+        return dentistaBusiness.salvar(dentista);
+    }
+
+    public Dentista removerDentista(Dentista dentista) throws DAOException {
+        return dentistaBusiness.remover(dentista);
+    }
+
+    public Dentista buscarDentista(Long id) throws DAOException {
+        return dentistaBusiness.buscar(id);
+    }
+
+    public List<Dentista> listarDentistas() throws DAOException {
+        return dentistaBusiness.listar();
+    }
+
+    // Agendamento
+    public Agendamento cadastrarAgendamento(Agendamento agendamento) throws DAOException {
+        return agendamentoBusiness.salvar(agendamento);
+    }
+
+    public Agendamento removerAgendamento(Agendamento agendamento) throws DAOException {
+        return agendamentoBusiness.remover(agendamento);
+    }
+
+    public Agendamento buscarAgendamento(Long id) throws DAOException {
+        return agendamentoBusiness.buscar(id);
+    }
+
+    public List<Agendamento> listarAgendamentos() throws DAOException {
+        return agendamentoBusiness.listar();
     }
 
     // Usuario
@@ -106,8 +148,8 @@ public class Facade implements Serializable {
     public List<Estado> listarEstados() throws Exception {
         return estadoBusiness.listar();
     }
-    
-     // Ficha de Anamnese
+
+    // Ficha de Anamnese
     public FichaAnamnese cadastrarFichaAnamnese(FichaAnamnese fichaAnamnese) throws Exception {
         return fichaAnamneseBusiness.salvar(fichaAnamnese);
     }

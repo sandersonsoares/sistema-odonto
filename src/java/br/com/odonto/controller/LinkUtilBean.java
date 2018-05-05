@@ -52,6 +52,36 @@ public class LinkUtilBean {
     }
 
     /*
+    Agendamentos
+     */
+    public String novoAgendamento() {
+        return "/privado/agendamento/formulario.xhtml" + FACES_REDIRECT;
+    }
+
+    public String editarAgendamento(Long id) {
+        return "/privado/agendamento/formulario.xhtml" + FACES_REDIRECT + "&id=" + id;
+    }
+
+    public String listaAgendamentos() {
+        return "/privado/agendamento/lista.xhtml" + FACES_REDIRECT;
+    }
+
+    /*
+    Dentistas
+     */
+    public String novoDentista() {
+        return "/privado/dentista/formulario.xhtml" + FACES_REDIRECT;
+    }
+
+    public String editarDentista(Long id) {
+        return "/privado/dentista/formulario.xhtml" + FACES_REDIRECT + "&id=" + id;
+    }
+
+    public String listaDentistas() {
+        return "/privado/dentista/lista.xhtml" + FACES_REDIRECT;
+    }
+
+    /*
     Grupos
      */
     public String novoGrupo() {

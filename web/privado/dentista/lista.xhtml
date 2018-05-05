@@ -1,0 +1,124 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/template.xhtml">
+
+    <ui:define name="content">
+
+        <div class="ui-g ui-fluid">
+            <div class="ui-g-12">
+                <h:form id="breadcrumb">
+                    <p:breadCrumb>
+                        <p:menuitem value="Home" action="#{linkUtilBean.paginaPrincipal()}" />
+                        <p:menuitem value="Dentistas" />
+                    </p:breadCrumb>
+                </h:form>
+            </div>
+
+            <div class="ui-g-12">
+                <p:messages autoUpdate="true" showIcon="true" closable="true"/>
+            </div>
+
+            <div class="ui-g-12">
+                <h:form id="form-busca">
+                    <div class="Card">
+                        <div class="CardTopic">Buscar</div>
+                        <div class="SeparatorFull"></div>
+
+                        <div class="ui-g-12 ui-md-10">
+                            <p:inputText id="busca" value="#{dentistaBean.busca}" placeholder="Nome ou CPF"/>
+                        </div>
+                        <div class="ui-g-12 ui-md-2">
+                            <p:commandButton actionListener="#{dentistaBean.filtraDentistas()}" update=":form-table:dentistasTable" value="Buscar" icon="fa fa-search"/>
+                        </div>
+                    </div>
+                </h:form>
+            </div>
+            <h:form id="form-table">
+                <div class="ui-g-12">
+                    <div class="Card">
+                        <div class="CardTopic">
+                            <p:commandButton rendered="#{request.isUserInRole('ROLE_CADASTRAR_DENTISTAS')}" action="#{linkUtilBean.novoDentista()}" value="Novo" icon="fa fa-plus" style="max-width: 150px" />
+                        </div>
+                        <div class="SeparatorFull"></div>
+
+                        <p:dataTable id="dentistasTable" value="#{dentistaBean.dentistas}" var="dentista" paginator="true" 
+                                     rows="15" reflow="true" rowStyleClass="TexAlCenter">
+                            <p:column headerText="CRO">
+                                <h:outputText value="#{dentista.cro}"/>
+                            </p:column>
+                            <p:column headerText="Nome">
+                                <h:outputText value="#{dentista.nome}"/>
+                            </p:column>
+                            <p:column headerText="Especialização">
+                                <h:outputText value="#{dentista.especializacao}"/>
+                            </p:column>
+                            <p:column headerText="Sexo">
+                                <h:outputText value="#{dentista.sexo}"/>
+                            </p:column>
+                            <p:column headerText="Data de Nascimento">
+                                <p:outputLabel value="#{dentista.dataNascimento}" >
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </p:outputLabel>
+                            </p:column>
+                            <p:column headerText="Ações">
+                                <p:commandButton class="ui-button-icon-only OrangeButton" icon="fa fa-pencil"
+                                                 action="#{linkUtilBean.editarDentista(dentista.id)}" rendered="#{request.isUserInRole('ROLE_ALTERAR_DENTISTAS')}">
+                                </p:commandButton>
+                                <p:commandButton class="ui-button-icon-only RedButton" icon="fa fa-trash"
+                                                 action="#{dentistaBean.preparaDentista(dentista)}" rendered="#{request.isUserInRole('ROLE_REMOVER_DENTISTAS')}"
+                                                 update=":form-apagar">
+                                </p:commandButton>
+                            </p:column>
+                        </p:dataTable>
+                    </div>
+                </div>
+            </h:form>
+        </div>
+
+        <!--Dialog Sucesso-->
+        <p:dialog header="Sucesso" widgetVar="sucess-dlg" modal="true" draggable="false"
+                  responsive="true" width="400" resizable="false" closable="false">
+            <div class="ui-g">
+                <div class="ui-g-12 TexAlCenter">
+                    <i class="fa fa-check-circle-o Fs30 TexAlCenter"></i>
+                    <h4 class="TexAlCenter">Dado Apagado com Sucesso!</h4>
+                </div>
+                <div class="Separator"></div>
+                <div class="ui-g-12">
+                    <h:form>
+                        <p:commandButton class="GreenButton ui-g-12" value="OK"
+                                         action="#{linkUtilBean.listaDentistas()}" immediate="true">
+                        </p:commandButton>
+                    </h:form>
+                </div>
+            </div>
+        </p:dialog>
+
+        <!--Dialog Apagar-->
+        <p:dialog header="Apagar" widgetVar="apagar-dlg" modal="true" draggable="false"
+                  responsive="true" width="400" resizable="false" closable="false">
+            <h:form id="form-apagar">
+                <div class="ui-g">
+                    <div class="ui-g-12 TexAlCenter">
+                        <i class="icon-trash-alt Fs30 TexAlCenter"></i>
+                        <h4 class="TexAlCenter">Deseja relamente apagar <b>#{dentistaBean.dentista.nome}</b>?</h4>
+                    </div>
+                    <div class="Separator"></div>
+                    <div class="ui-g-12">
+                        <p:commandButton class="ui-button-icon-only RedButton" icon="fa fa-close"
+                                         onclick="PF('apagar-dlg').hidden()">
+                        </p:commandButton>
+
+                        <p:commandButton class="ui-button-icon-only GreenButton Fright" icon="fa fa-check"
+                                         action="#{dentistaBean.removerDentista()}" update=":form-table:dentistasTable">
+                        </p:commandButton>
+                    </div>
+                </div>
+            </h:form>
+        </p:dialog>
+
+    </ui:define>
+</ui:composition>

@@ -61,6 +61,16 @@
                     </h:commandLink>
                 </li>
                 <li>
+                    <h:commandLink action="#{linkUtilBean.listaDentistas()}" rendered="#{request.isUserInRole('ROLE_VISUALIZAR_DENTISTAS')}">
+                        <i class="icon-user MarRight10"></i> Dentistas
+                    </h:commandLink>
+                </li>
+                <li>
+                    <h:commandLink action="#{linkUtilBean.listaAgendamentos()}">
+                        <i class="icon-user MarRight10"></i> Agendamento
+                    </h:commandLink>
+                </li>
+                <li>
                     <p:commandLink class="menulink" action="#{linkUtilBean.listaUsuarios()}" rendered="#{request.isUserInRole('ROLE_VISUALIZAR_USUARIOS')}">
                         <i class="icon-user2 MarRight10"></i> Usuários
                     </p:commandLink>

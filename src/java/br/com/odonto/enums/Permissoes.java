@@ -9,6 +9,11 @@ public enum Permissoes {
     ROLE_VISUALIZAR_CLIENTES("Visualização de Clientes"),
     ROLE_ALTERAR_CLIENTES("Alteração de Clientes"),
     ROLE_REMOVER_CLIENTES("Remoção de Clientes"),
+    //    DENTISTAS
+    ROLE_CADASTRAR_DENTISTAS("Cadastro de Dentistas"),
+    ROLE_VISUALIZAR_DENTISTAS("Visualização de Dentistas"),
+    ROLE_ALTERAR_DENTISTAS("Alteração de Dentistas"),
+    ROLE_REMOVER_DENTISTAS("Remoção de Dentistas"),
     //    USUARIOS
     ROLE_CADASTRAR_USUARIOS("Cadastro de Usuários do Sistema"),
     ROLE_VISUALIZAR_USUARIOS("Visualização de Usuários do Sistema"),

@@ -21,6 +21,10 @@
         <intercept-url pattern="/faces/privado/cliente/lista.xhtml" access="hasRole('ROLE_VISUALIZAR_CLIENTES')"/>
         <intercept-url pattern="/faces/privado/cliente/formulario.xhtml" access="hasAnyRole('ROLE_CADASTRAR_CLIENTES', 'ROLE_ALTERAR_CLIENTES')"/>
         
+        <!--Dentistas-->
+        <intercept-url pattern="/faces/privado/dentista/lista.xhtml" access="hasRole('ROLE_VISUALIZAR_DENTISTAS')"/>
+        <intercept-url pattern="/faces/privado/dentista/formulario.xhtml" access="hasAnyRole('ROLE_CADASTRAR_CLIENTES', 'ROLE_ALTERAR_DENTISTAS')"/>
+        
         <!--Veiculos-->
         <intercept-url pattern="/faces/privado/veiculo/lista.xhtml" access="hasRole('ROLE_VISUALIZAR_VEICULOS')"/>
         <intercept-url pattern="/faces/privado/veiculo/formulario.xhtml" access="hasAnyRole('ROLE_CADASTRAR_VEICULOS', 'ROLE_ALTERAR_VEICULOS')"/>

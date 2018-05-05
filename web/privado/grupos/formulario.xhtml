@@ -1,6 +1,5 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="/WEB-INF/templates/template.xhtml"
                 xmlns:p="http://primefaces.org/ui">
@@ -45,6 +44,16 @@
                                             <p:selectBooleanCheckbox itemLabel="VISUALIZA CLIENTES" value="#{grupoBean.permissoesUtil.visualizarClientes}" />
                                             <p:selectBooleanCheckbox itemLabel="ALTERA CLIENTES" value="#{grupoBean.permissoesUtil.alterarClientes}" />
                                             <p:selectBooleanCheckbox itemLabel="REMOVE CLIENTES" value="#{grupoBean.permissoesUtil.removerClientes}" />
+                                        </p:panelGrid>
+                                    </p:panel>
+
+                                    <!--Dentistas-->
+                                    <p:panel header="Dentistas">
+                                        <p:panelGrid columns="5" styleClass="ui-panelgrid-blank" class="PadWithBorder10" layout="grid">
+                                            <p:selectBooleanCheckbox itemLabel="CADASTRA DENTISTAS" value="#{grupoBean.permissoesUtil.cadastroDentistas}" />
+                                            <p:selectBooleanCheckbox itemLabel="VISUALIZA DENTISTAS" value="#{grupoBean.permissoesUtil.visualizarDentistas}" />
+                                            <p:selectBooleanCheckbox itemLabel="ALTERA DENTISTAS" value="#{grupoBean.permissoesUtil.alterarDentistas}" />
+                                            <p:selectBooleanCheckbox itemLabel="REMOVE DENTISTAS" value="#{grupoBean.permissoesUtil.removerDentistas}" />
                                         </p:panelGrid>
                                     </p:panel>
 

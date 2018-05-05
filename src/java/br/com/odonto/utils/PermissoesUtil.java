@@ -20,6 +20,13 @@ public class PermissoesUtil {
     private boolean alterarClientes;
     private boolean removerClientes;
     /*
+    Dentistas
+     */
+    private boolean cadastroDentistas;
+    private boolean visualizarDentistas;
+    private boolean alterarDentistas;
+    private boolean removerDentistas;
+    /*
     Usuários
      */
     private boolean cadastroUsuarios;
@@ -58,6 +65,21 @@ public class PermissoesUtil {
         }
         if (removerClientes) {
             permissoes.add(Permissoes.ROLE_REMOVER_CLIENTES);
+        }
+        /*
+          Dentistas
+         */
+        if (cadastroDentistas) {
+            permissoes.add(Permissoes.ROLE_CADASTRAR_DENTISTAS);
+        }
+        if (visualizarDentistas) {
+            permissoes.add(Permissoes.ROLE_VISUALIZAR_DENTISTAS);
+        }
+        if (alterarDentistas) {
+            permissoes.add(Permissoes.ROLE_ALTERAR_DENTISTAS);
+        }
+        if (removerDentistas) {
+            permissoes.add(Permissoes.ROLE_REMOVER_DENTISTAS);
         }
         /*
           Usuários
@@ -114,6 +136,21 @@ public class PermissoesUtil {
         }
         if (permissoes.contains(Permissoes.ROLE_REMOVER_CLIENTES)) {
             removerClientes = true;
+        }
+        /*
+          Dentistas
+         */
+        if (permissoes.contains(Permissoes.ROLE_CADASTRAR_DENTISTAS)) {
+            cadastroDentistas = true;
+        }
+        if (permissoes.contains(Permissoes.ROLE_VISUALIZAR_DENTISTAS)) {
+            visualizarDentistas = true;
+        }
+        if (permissoes.contains(Permissoes.ROLE_ALTERAR_DENTISTAS)) {
+            alterarDentistas = true;
+        }
+        if (permissoes.contains(Permissoes.ROLE_REMOVER_DENTISTAS)) {
+            removerDentistas = true;
         }
         /*
           Usuários
@@ -246,4 +283,36 @@ public class PermissoesUtil {
         this.removerGrupos = removerGrupos;
     }
 
+    public boolean isCadastroDentistas() {
+        return cadastroDentistas;
+    }
+
+    public void setCadastroDentistas(boolean cadastroDentistas) {
+        this.cadastroDentistas = cadastroDentistas;
+    }
+
+    public boolean isVisualizarDentistas() {
+        return visualizarDentistas;
+    }
+
+    public void setVisualizarDentistas(boolean visualizarDentistas) {
+        this.visualizarDentistas = visualizarDentistas;
+    }
+
+    public boolean isAlterarDentistas() {
+        return alterarDentistas;
+    }
+
+    public void setAlterarDentistas(boolean alterarDentistas) {
+        this.alterarDentistas = alterarDentistas;
+    }
+
+    public boolean isRemoverDentistas() {
+        return removerDentistas;
+    }
+
+    public void setRemoverDentistas(boolean removerDentistas) {
+        this.removerDentistas = removerDentistas;
+    }
+    
 }

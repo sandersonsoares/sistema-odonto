@@ -1,0 +1,102 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/template.xhtml">
+
+    <ui:define name="content">
+
+        <h:form>
+            <div class="ui-g ui-fluid">
+                <div class="ui-g-12">
+                    <p:breadCrumb>
+                        <p:menuitem value="Home" action="#{linkUtilBean.paginaPrincipal()}" immediate="true"/>
+                        <p:menuitem value="Agendamentos" action="#{linkUtilBean.listaAgendamentos()}" immediate="true"/>
+                        <p:menuitem value="#{agendamentoBean.agendamento.id == null ? 'Cadastrar' : 'Alterar'}" />
+                    </p:breadCrumb>
+                </div>
+
+                <div class="ui-g-12">
+                    <p:messages autoUpdate="true" showIcon="true" closable="true"/>
+                </div>
+
+                <div class="ui-g-12">
+                    <div class="Card">
+                        <div class="CardTopic">Dados do Agendamento</div>
+                        <div class="SeparatorFull"></div>
+
+                        <div class="ui-g-12 ui-md-12">
+                            <h4>Protocolo: #{agendamentoBean.agendamento.protocolo}</h4>
+                        </div>
+                        <div class="ui-g-12 ui-md-4">
+                            <p:outputLabel for="dateAgendamento" value="Data do Agendamento" />
+                            <p:calendar id="dateAgendamento"  value="#{agendamentoBean.agendamento.dataAtendimento}" navigator="true" pattern="dd/MM/yyyy HH:mm:ss" showOn="button"/>
+                        </div>
+                        <div class="ui-g-12 ui-md-4">
+                            <p:outputLabel for="dateInicio" value="Data e Hora de Início" />
+                            <p:calendar id="dateInicio"  value="#{agendamentoBean.agendamento.horaInicial}" navigator="true" pattern="dd/MM/yyyy HH:mm:ss" showOn="button"/>
+                        </div>
+                        <div class="ui-g-12 ui-md-4">
+                            <p:outputLabel for="dateFim" value="Data e Hora de Fim" />
+                            <p:calendar id="dateFim"  value="#{agendamentoBean.agendamento.horaInicial}" navigator="true" pattern="dd/MM/yyyy HH:mm:ss" showOn="button"/>
+                        </div>
+                        <div class="ui-g-12 ui-md-6">
+                            <p:outputLabel for="cliente" value="Cliente" />
+                            <p:selectOneMenu  id="cliente" value="#{agendamentoBean.agendamento.paciente}"
+                                              converter="ClienteConverter">
+                                <f:selectItem  itemDisabled="true" itemLabel="Selecione"/>
+                                <f:selectItems value="#{agendamentoBean.clientes}" var="cliente" itemValue="#{cliente}" itemLabel="#{cliente.nome}"/>
+                            </p:selectOneMenu>
+                        </div>
+                        <div class="ui-g-12 ui-md-6">
+                            <p:outputLabel for="dentista" value="Dentista" />
+                            <p:selectOneMenu  id="dentista" value="#{agendamentoBean.agendamento.dentista}"
+                                              converter="DentistaConverter">
+                                <f:selectItem  itemDisabled="true" itemLabel="Selecione"/>
+                                <f:selectItems value="#{agendamentoBean.dentistas}" var="dentista" itemValue="#{dentista}" itemLabel="#{dentista.nome}"/>
+                            </p:selectOneMenu>
+                        </div>
+                        <div class="ui-g-12 ui-md-12">
+                            <p:outputLabel for="ortodontia" value="Ortodontia"/>
+                            <p:inputText  id="ortodontia" value="#{agendamentoBean.agendamento.ortodontia}" required="true" requiredMessage="Campo Ortodontia está vazio!"/>
+                        </div>
+
+                        <div class="EmptyBox10"></div>
+                        <div class="Separator"></div>
+
+                        <div class="ui-g-12">
+                            <p:commandButton class="ui-button-icon-only RedButton" icon="fa fa-close"
+                                             action="#{linkUtilBean.listaAgendamentos()}" immediate="true">
+                            </p:commandButton>
+
+                            <p:commandButton class="ui-button-icon-only Fright" icon="fa #{agendamentoBean.agendamento.id == null ? 'fa-check' : 'fa-refresh'}"
+                                             action="#{agendamentoBean.salvarAgendamento()}">
+                            </p:commandButton>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </h:form>
+
+        <!--Dialog Sucesso-->
+        <p:dialog header="Sucesso" widgetVar="sucess-dlg" modal="true" draggable="false"
+                  responsive="true" width="400" resizable="false" closable="false">
+            <div class="ui-g">
+                <div class="ui-g-12 TexAlCenter">
+                    <i class="fa fa-check-circle-o Fs30 TexAlCenter"></i>
+                    <h4 class="TexAlCenter">Dados #{agendamentoBean.agendamento.id == null ? 'Salvos' : 'Alterados'} com Sucesso!</h4>
+                </div>
+                <div class="Separator"></div>
+                <div class="ui-g-12">
+                    <h:form>
+                        <p:commandButton class="GreenButton ui-g-12" value="OK"
+                                         action="#{linkUtilBean.listaAgendamentos()}" immediate="true">
+                        </p:commandButton>
+                    </h:form>
+                </div>
+            </div>
+        </p:dialog>
+
+    </ui:define>
+</ui:composition>
