@@ -12,7 +12,7 @@
                 <h:form id="breadcrumb">
                     <p:breadCrumb>
                         <p:menuitem value="Home" action="#{linkUtilBean.paginaPrincipal()}" />
-                        <p:menuitem value="Clientes" />
+                        <p:menuitem value="Pagamentos" />
                     </p:breadCrumb>
                 </h:form>
             </div>
@@ -28,10 +28,10 @@
                         <div class="SeparatorFull"></div>
 
                         <div class="ui-g-12 ui-md-10">
-                            <p:inputText id="busca" value="#{pessoaBean.busca}" placeholder="Nome ou CPF"/>
+                            <p:inputText id="busca" value="#{pagamentoBean.busca}" placeholder="Nome ou Descrição..."/>
                         </div>
                         <div class="ui-g-12 ui-md-2">
-                            <p:commandButton actionListener="#{pessoaBean.filtraClientes()}" update=":form-table:clientesTable" value="Buscar" icon="fa fa-search"/>
+                            <p:commandButton actionListener="#{pagamentoBean.filtraPagamentos()}" update=":form-table:pagamentosTable" value="Buscar" icon="fa fa-search"/>
                         </div>
                     </div>
                 </h:form>
@@ -40,37 +40,29 @@
                 <div class="ui-g-12">
                     <div class="Card">
                         <div class="CardTopic">
-                            <p:commandButton rendered="#{request.isUserInRole('ROLE_CADASTRAR_CLIENTES')}" action="#{linkUtilBean.novoCliente()}" value="Novo" icon="fa fa-plus" style="max-width: 150px" />
+                            <p:commandButton rendered="#{request.isUserInRole('ROLE_CADASTRAR_PAGAMENTOS')}" action="#{linkUtilBean.novoPagamento()}" value="Novo" icon="fa fa-plus" style="max-width: 150px" />
                         </div>
                         <div class="SeparatorFull"></div>
 
-                        <p:dataTable id="clientesTable" value="#{pessoaBean.clientes}" var="cliente" paginator="true" 
+                        <p:dataTable id="pagamentosTable" value="#{pagamentoBean.pagamentos}" var="pagamento" paginator="true" 
                                      rows="15" reflow="true" rowStyleClass="TexAlCenter">
-                            <p:column headerText="CPF">
-                                <h:outputText value="#{cliente.cpf}"/>
-                            </p:column>
                             <p:column headerText="Nome">
-                                <h:outputText value="#{cliente.nome}"/>
+                                <p class="#{pagamento.pago ? 'Green' : 'Red'}"><b>#{pagamento.pago ? 'PAGO' : 'NÃO PAGO'}</b></p>
                             </p:column>
-                            <p:column headerText="Sexo">
-                                <h:outputText value="#{cliente.sexo}"/>
+                            <p:column headerText="Descrição">
+                                <h:outputText value="#{pagamento.descricao}"/>
                             </p:column>
-                            <p:column headerText="Data de Nascimento">
-                                <p:outputLabel value="#{cliente.dataNascimento}" >
-                                    <f:convertDateTime pattern="dd/MM/yyyy" />
-                                </p:outputLabel>
-                            </p:column>
-                            <p:column headerText="Ficha Anamnese">
-                                <p:commandButton class="ui-button-icon-only OrangeButton" icon="fa fa-pencil"
-                                                 action="#{linkUtilBean.editarFichaAnamnese(cliente.id)}" rendered="#{request.isUserInRole('ROLE_ALTERAR_CLIENTES')}">
-                                </p:commandButton>
+                            <p:column headerText="Valor">
+                                <h:outputText value="#{pagamento.valor}">
+                                    <f:convertNumber currencySymbol="R$ " type="currency"/>
+                                </h:outputText>
                             </p:column>
                             <p:column headerText="Ações">
                                 <p:commandButton class="ui-button-icon-only OrangeButton" icon="fa fa-pencil"
-                                                 action="#{linkUtilBean.editarCliente(cliente.id)}" rendered="#{request.isUserInRole('ROLE_ALTERAR_CLIENTES')}">
+                                                 action="#{linkUtilBean.editarPagamento(pagamento.id)}" rendered="#{request.isUserInRole('ROLE_ALTERAR_PAGAMENTOS')}">
                                 </p:commandButton>
                                 <p:commandButton class="ui-button-icon-only RedButton" icon="fa fa-trash"
-                                                 action="#{pessoaBean.preparaCliente(cliente)}" rendered="#{request.isUserInRole('ROLE_REMOVER_CLIENTES')}"
+                                                 action="#{pagamentoBean.preparaPagamento(pagamento)}" rendered="#{request.isUserInRole('ROLE_REMOVER_PAGAMENTOS')}"
                                                  update=":form-apagar">
                                 </p:commandButton>
                             </p:column>
@@ -92,7 +84,7 @@
                 <div class="ui-g-12">
                     <h:form>
                         <p:commandButton class="GreenButton ui-g-12" value="OK"
-                                         action="#{linkUtilBean.listaClientes()}" immediate="true">
+                                         action="#{linkUtilBean.listaPagamentos()}" immediate="true">
                         </p:commandButton>
                     </h:form>
                 </div>
@@ -106,7 +98,7 @@
                 <div class="ui-g">
                     <div class="ui-g-12 TexAlCenter">
                         <i class="icon-trash-alt Fs30 TexAlCenter"></i>
-                        <h4 class="TexAlCenter">Deseja relamente apagar <b>#{pessoaBean.cliente.nome}</b>?</h4>
+                        <h4 class="TexAlCenter">Deseja relamente apagar <b>#{pagamentoBean.pagamento.descricao}</b>?</h4>
                     </div>
                     <div class="Separator"></div>
                     <div class="ui-g-12">
@@ -115,7 +107,7 @@
                         </p:commandButton>
 
                         <p:commandButton class="ui-button-icon-only GreenButton Fright" icon="fa fa-check"
-                                         action="#{pessoaBean.removerCliente()}" update=":form-table:clientesTable">
+                                         action="#{pagamentoBean.removerPagamento()}" update=":form-table:pagamentosTable">
                         </p:commandButton>
                     </div>
                 </div>

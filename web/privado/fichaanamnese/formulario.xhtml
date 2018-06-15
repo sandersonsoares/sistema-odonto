@@ -1,0 +1,166 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/template.xhtml">
+
+    <ui:define name="content">
+
+        <h:form>
+            <div class="ui-g ui-fluid">
+                <div class="ui-g-12">
+                    <p:breadCrumb>
+                        <p:menuitem value="Home" action="#{linkUtilBean.paginaPrincipal()}" immediate="true"/>
+                        <p:menuitem value="FichasAnamnese" action="#{linkUtilBean.listaFichasAnamnese()}" immediate="true"/>
+                        <p:menuitem value="#{fichaAnamneseBean.fichaAnamnese.id == null ? 'Cadastrar' : 'Alterar'}" />
+                    </p:breadCrumb>
+                </div>
+
+                <div class="ui-g-12">
+                    <p:messages autoUpdate="true" showIcon="true" closable="true"/>
+                </div>
+
+                <div class="ui-g-12">
+                    <div class="Card">
+                        <div class="CardTopic">Dados do FichaAnamnese</div>
+                        <div class="SeparatorFull"></div>
+
+                        <div class="ui-g-12">
+                            <p:outputLabel for="queixaDoencaAtual" value="Queixa da doença atual?"/>
+                            <p:selectOneRadio id="queixaDoencaAtual" value="#{fichaAnamneseBean.fichaAnamnese.queixaDoencaAtual}" required="true">
+                                <f:selectItem itemLabel="Sim" itemValue="#{true}" />
+                                <f:selectItem itemLabel="Não" itemValue="#{false}" />
+                            </p:selectOneRadio>
+                        </div>
+                        <div class="ui-g-12">
+                            <p:outputLabel for="algumaDoenca" value="Sofre de alguma doença?"/>
+                            <p:selectOneRadio id="algumaDoenca" value="#{fichaAnamneseBean.fichaAnamnese.algumaDoenca}" required="true">
+                                <f:selectItem itemLabel="Sim" itemValue="#{true}" />
+                                <f:selectItem itemLabel="Não" itemValue="#{false}" />
+                            </p:selectOneRadio>
+                        </div>
+                        <div class="ui-g-12">
+                            <p:outputLabel for="seEmTratamento" value="Está em tratamento?"/>
+                            <p:selectOneRadio id="seEmTratamento" value="#{fichaAnamneseBean.fichaAnamnese.seEmTratamento}" required="true">
+                                <f:selectItem itemLabel="Sim" itemValue="#{true}" />
+                                <f:selectItem itemLabel="Não" itemValue="#{false}" />
+                            </p:selectOneRadio>
+                        </div>
+                        <div class="ui-g-12">
+                            <p:outputLabel for="gravidez" value="Está em gravidez?"/>
+                            <p:selectOneRadio id="gravidez" value="#{fichaAnamneseBean.fichaAnamnese.gravidez}" required="true">
+                                <f:selectItem itemLabel="Sim" itemValue="#{true}" />
+                                <f:selectItem itemLabel="Não" itemValue="#{false}" />
+                            </p:selectOneRadio>
+                        </div>
+                        <div class="ui-g-12">
+                            <p:outputLabel for="medicacao" value="Usa medicação?"/>
+                            <p:selectOneRadio id="medicacao" value="#{fichaAnamneseBean.fichaAnamnese.medicacao}" required="true">
+                                <f:selectItem itemLabel="Sim" itemValue="#{true}" />
+                                <f:selectItem itemLabel="Não" itemValue="#{false}" />
+                            </p:selectOneRadio>
+                        </div>
+                        <div class="ui-g-12">
+                            <p:outputLabel for="operado" value="Está operado?"/>
+                            <p:selectOneRadio id="operado" value="#{fichaAnamneseBean.fichaAnamnese.operado}" required="true">
+                                <f:selectItem itemLabel="Sim" itemValue="#{true}" />
+                                <f:selectItem itemLabel="Não" itemValue="#{false}" />
+                            </p:selectOneRadio>
+                        </div>
+                        <div class="ui-g-12">
+                            <p:outputLabel for="cicatrizacao" value="Está em cicratização?"/>
+                            <p:selectOneRadio id="cicatrizacao" value="#{fichaAnamneseBean.fichaAnamnese.cicatrizacao}" required="true">
+                                <f:selectItem itemLabel="Sim" itemValue="#{true}" />
+                                <f:selectItem itemLabel="Não" itemValue="#{false}" />
+                            </p:selectOneRadio>
+                        </div>
+                        <div class="ui-g-12">
+                            <p:outputLabel for="anestesia" value="Alergia alguma anestesia?"/>
+                            <p:selectOneRadio id="anestesia" value="#{fichaAnamneseBean.fichaAnamnese.anestesia}" required="true">
+                                <f:selectItem itemLabel="Sim" itemValue="#{true}" />
+                                <f:selectItem itemLabel="Não" itemValue="#{false}" />
+                            </p:selectOneRadio>
+                        </div>
+                        <div class="ui-g-12">
+                            <p:outputLabel for="hemorragia" value="Já teve alguma hemorragia?"/>
+                            <p:selectOneRadio id="hemorragia" value="#{fichaAnamneseBean.fichaAnamnese.hemorragia}" required="true">
+                                <f:selectItem itemLabel="Sim" itemValue="#{true}" />
+                                <f:selectItem itemLabel="Não" itemValue="#{false}" />
+                            </p:selectOneRadio>
+                        </div>
+                        <div class="ui-g-12">
+                            <p:outputLabel for="febreReumatica" value="Já teve alguma febre reumática?"/>
+                            <p:selectOneRadio id="febreReumatica" value="#{fichaAnamneseBean.fichaAnamnese.febreReumatica}" required="true">
+                                <f:selectItem itemLabel="Sim" itemValue="#{true}" />
+                                <f:selectItem itemLabel="Não" itemValue="#{false}" />
+                            </p:selectOneRadio>
+                        </div>
+                        <div class="ui-g-12">
+                            <p:outputLabel for="problemaCardiaco" value="Já teve algum problema cardíaco, renal, gástrico, respiratório, alérgico ou articular?"/>
+                            <p:selectOneRadio id="problemaCardiaco" value="#{fichaAnamneseBean.fichaAnamnese.problemaCardiaco}" required="true">
+                                <f:selectItem itemLabel="Sim" itemValue="#{true}" />
+                                <f:selectItem itemLabel="Não" itemValue="#{false}" />
+                            </p:selectOneRadio>
+                        </div>
+                        <div class="ui-g-12">
+                            <p:outputLabel for="diabetes" value="Tem diabetes?"/>
+                            <p:selectOneRadio id="diabetes" value="#{fichaAnamneseBean.fichaAnamnese.diabetes}" required="true">
+                                <f:selectItem itemLabel="Sim" itemValue="#{true}" />
+                                <f:selectItem itemLabel="Não" itemValue="#{false}" />
+                            </p:selectOneRadio>
+                        </div>
+                        <div class="ui-g-12">
+                            <p:outputLabel for="hipertensaoArterial" value="Tem hipertensão arterial?"/>
+                            <p:selectOneRadio id="hipertensaoArterial" value="#{fichaAnamneseBean.fichaAnamnese.hipertensaoArterial}" required="true">
+                                <f:selectItem itemLabel="Sim" itemValue="#{true}" />
+                                <f:selectItem itemLabel="Não" itemValue="#{false}" />
+                            </p:selectOneRadio>
+                        </div>
+                        <div class="ui-g-12">
+                            <p:outputLabel for="habitos" value="Hábitos."/>
+                            <p:inputTextarea id="habitos" value="#{fichaAnamneseBean.fichaAnamnese.habitos}" required="true"/>
+                        </div>
+                        <div class="ui-g-12">
+                            <p:outputLabel for="antecedentes" value="Antecedentes e outras observações."/>
+                            <p:inputTextarea id="antecedentes" value="#{fichaAnamneseBean.fichaAnamnese.antecedentes}" required="true"/>
+                        </div>
+
+                        <div class="EmptyBox10"></div>
+                        <div class="Separator"></div>
+
+                        <div class="ui-g-12">
+                            <p:commandButton class="ui-button-icon-only RedButton" icon="fa fa-close"
+                                             action="#{linkUtilBean.listaClientes()}" immediate="true">
+                            </p:commandButton>
+
+                            <p:commandButton class="ui-button-icon-only Fright" icon="fa #{fichaAnamneseBean.fichaAnamnese.id == null ? 'fa-check' : 'fa-refresh'}"
+                                             action="#{fichaAnamneseBean.salvarFichaAnamnese()}">
+                            </p:commandButton>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </h:form>
+
+        <!--Dialog Sucesso-->
+        <p:dialog header="Sucesso" widgetVar="sucess-dlg" modal="true" draggable="false"
+                  responsive="true" width="400" resizable="false" closable="false">
+            <div class="ui-g">
+                <div class="ui-g-12 TexAlCenter">
+                    <i class="fa fa-check-circle-o Fs30 TexAlCenter"></i>
+                    <h4 class="TexAlCenter">Dados #{fichaAnamneseBean.fichaAnamnese.id == null ? 'Salvos' : 'Alterados'} com Sucesso!</h4>
+                </div>
+                <div class="Separator"></div>
+                <div class="ui-g-12">
+                    <h:form>
+                        <p:commandButton class="GreenButton ui-g-12" value="OK"
+                                         action="#{linkUtilBean.listaFichasAnamnese()}" immediate="true">
+                        </p:commandButton>
+                    </h:form>
+                </div>
+            </div>
+        </p:dialog>
+
+    </ui:define>
+</ui:composition>

@@ -1,11 +1,21 @@
 package br.com.odonto.model;
 
+import br.com.odonto.enums.Motivo;
+import br.com.odonto.enums.Situacao;
+import br.com.odonto.enums.TipoAgendamento;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -31,7 +41,19 @@ public class Agendamento implements Serializable {
     private Cliente paciente;
     @ManyToOne
     private Dentista dentista;
-    private String ortodontia;
+    @Enumerated(EnumType.STRING)
+    private TipoAgendamento tipoAgendamento;
+    @Enumerated(EnumType.STRING)
+    private Situacao situacao;
+    @Enumerated(EnumType.STRING)
+    private Motivo motivo;
+    @ManyToMany
+    private List<Procedimento> procedimentos;
+
+    public Agendamento() {
+        this.protocolo = "AG-" + Calendar.getInstance().getTimeInMillis();
+        this.procedimentos = new ArrayList<>();
+    }
 
     public Long getId() {
         return id;
@@ -89,12 +111,36 @@ public class Agendamento implements Serializable {
         this.dentista = dentista;
     }
 
-    public String getOrtodontia() {
-        return ortodontia;
+    public TipoAgendamento getTipoAgendamento() {
+        return tipoAgendamento;
     }
 
-    public void setOrtodontia(String ortodontia) {
-        this.ortodontia = ortodontia;
+    public void setTipoAgendamento(TipoAgendamento tipoAgendamento) {
+        this.tipoAgendamento = tipoAgendamento;
+    }
+
+    public Situacao getSituacao() {
+        return situacao;
+    }
+
+    public void setSituacao(Situacao situacao) {
+        this.situacao = situacao;
+    }
+
+    public Motivo getMotivo() {
+        return motivo;
+    }
+
+    public void setMotivo(Motivo motivo) {
+        this.motivo = motivo;
+    }
+
+    public List<Procedimento> getProcedimentos() {
+        return procedimentos;
+    }
+
+    public void setProcedimentos(List<Procedimento> procedimentos) {
+        this.procedimentos = procedimentos;
     }
 
 }

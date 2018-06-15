@@ -1,13 +1,15 @@
 package br.com.odonto.controller;
 
+import br.com.odonto.enums.Motivo;
+import br.com.odonto.enums.Situacao;
+import br.com.odonto.enums.TipoAgendamento;
 import br.com.odonto.exception.DAOException;
 import br.com.odonto.facade.Facade;
 import br.com.odonto.model.Agendamento;
 import br.com.odonto.model.Cliente;
 import br.com.odonto.model.Dentista;
+import br.com.odonto.model.Procedimento;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -23,32 +25,30 @@ import javax.faces.context.FacesContext;
 @ViewScoped
 public class AgendamentoBean extends DefaultBean {
 
-    private Facade fachada;
+    private Facade fachada = new Facade();
 
     private Agendamento agendamento;
     private List<Agendamento> agendamentos;
     private List<Cliente> clientes;
     private List<Dentista> dentistas;
+    private List<Procedimento> procedimentos;
     private String busca;
 
-    public AgendamentoBean() {
-        super();
-        this.fachada = new Facade();
-    }
+    private Procedimento procedimentoSelecionado;
+    private Double valorTotal;
 
     @PostConstruct
     private void init() {
         String id = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
-
+        this.agendamento = new Agendamento();
         try {
-            agendamentos = this.fachada.listarAgendamentos();
-            clientes = this.fachada.listarClientes();
-            dentistas = this.fachada.listarDentistas();
+            this.agendamentos = this.fachada.listarAgendamentos();
+            this.clientes = this.fachada.listarClientes();
+            this.dentistas = this.fachada.listarDentistas();
+            this.procedimentos = this.fachada.listarProcedimentos();
             if (id != null) {
                 this.agendamento = this.fachada.buscarAgendamento(Long.parseLong(id));
-            } else {
-                this.agendamento = new Agendamento();
-                this.agendamento.setProtocolo("AG-" + this.agendamentos.size() + Calendar.getInstance().getTimeInMillis());
+                calcularValorTotal();
             }
 
         } catch (Exception ex) {
@@ -70,7 +70,7 @@ public class AgendamentoBean extends DefaultBean {
         while (intAgendamento.hasNext()) {
             Agendamento agendamento = intAgendamento.next();
 
-            if (agendamento.getOrtodontia().contains(busca)
+            if (agendamento.getDentista().getNome().contains(busca) || agendamento.getProtocolo().contains(busca)
                     || agendamento.getPaciente().getNome().contains(busca)) {
                 tempList.add(agendamento);
             }
@@ -103,6 +103,38 @@ public class AgendamentoBean extends DefaultBean {
         }
     }
 
+    public void adicionarProcedimento() {
+        System.out.println(this.procedimentoSelecionado.getNome());
+        this.agendamento.getProcedimentos().add(this.procedimentoSelecionado);
+        calcularValorTotal();
+    }
+
+    public void removerProcedimento(Procedimento procedimento) {
+        this.agendamento.getProcedimentos().remove(procedimento);
+        calcularValorTotal();
+    }
+
+    public void calcularValorTotal() {
+        valorTotal = new Double(0);
+        if (agendamento.getProcedimentos().size() > 0) {
+            for (Procedimento procedimento : agendamento.getProcedimentos()) {
+                valorTotal = valorTotal + procedimento.getValor();
+            }
+        }
+    }
+
+    public TipoAgendamento[] getListarTipoAgendamentos() {
+        return TipoAgendamento.values();
+    }
+
+    public Situacao[] getListarSituacao() {
+        return Situacao.values();
+    }
+
+    public Motivo[] getListarMotivos() {
+        return Motivo.values();
+    }
+
     public Agendamento getAgendamento() {
         return agendamento;
     }
@@ -119,14 +151,6 @@ public class AgendamentoBean extends DefaultBean {
         this.agendamentos = agendamentos;
     }
 
-    public String getBusca() {
-        return busca;
-    }
-
-    public void setBusca(String busca) {
-        this.busca = busca;
-    }
-
     public List<Cliente> getClientes() {
         return clientes;
     }
@@ -141,6 +165,38 @@ public class AgendamentoBean extends DefaultBean {
 
     public void setDentistas(List<Dentista> dentistas) {
         this.dentistas = dentistas;
+    }
+
+    public List<Procedimento> getProcedimentos() {
+        return procedimentos;
+    }
+
+    public void setProcedimentos(List<Procedimento> procedimentos) {
+        this.procedimentos = procedimentos;
+    }
+
+    public String getBusca() {
+        return busca;
+    }
+
+    public void setBusca(String busca) {
+        this.busca = busca;
+    }
+
+    public Procedimento getProcedimentoSelecionado() {
+        return procedimentoSelecionado;
+    }
+
+    public void setProcedimentoSelecionado(Procedimento procedimentoSelecionado) {
+        this.procedimentoSelecionado = procedimentoSelecionado;
+    }
+
+    public Double getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(Double valorTotal) {
+        this.valorTotal = valorTotal;
     }
 
 }

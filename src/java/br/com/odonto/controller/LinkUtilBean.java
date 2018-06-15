@@ -67,6 +67,81 @@ public class LinkUtilBean {
     }
 
     /*
+    Procedimentos
+     */
+    public String novoProcedimento() {
+        return "/privado/procedimento/formulario.xhtml" + FACES_REDIRECT;
+    }
+
+    public String editarProcedimento(Long id) {
+        return "/privado/procedimento/formulario.xhtml" + FACES_REDIRECT + "&id=" + id;
+    }
+
+    public String listaProcedimentos() {
+        return "/privado/procedimento/lista.xhtml" + FACES_REDIRECT;
+    }
+
+    /*
+    Convenios
+     */
+    public String novoConvenio() {
+        return "/privado/convenio/formulario.xhtml" + FACES_REDIRECT;
+    }
+
+    public String editarConvenio(Long id) {
+        return "/privado/convenio/formulario.xhtml" + FACES_REDIRECT + "&id=" + id;
+    }
+
+    public String listaConvenios() {
+        return "/privado/convenio/lista.xhtml" + FACES_REDIRECT;
+    }
+
+    /*
+    Despesas
+     */
+    public String novaDespesa() {
+        return "/privado/despesa/formulario.xhtml" + FACES_REDIRECT;
+    }
+
+    public String editarDespesa(Long id) {
+        return "/privado/despesa/formulario.xhtml" + FACES_REDIRECT + "&id=" + id;
+    }
+
+    public String listaDespesas() {
+        return "/privado/despesa/lista.xhtml" + FACES_REDIRECT;
+    }
+
+    /*
+    Ficha Anamnese
+     */
+    public String novaFichaAnamnese() {
+        return "/privado/fichaanamnese/formulario.xhtml" + FACES_REDIRECT;
+    }
+
+    public String editarFichaAnamnese(Long id) {
+        return "/privado/fichaanamnese/formulario.xhtml" + FACES_REDIRECT + "&id=" + id;
+    }
+
+    public String listaFichasAnamnese() {
+        return "/privado/fichaanamnese/lista.xhtml" + FACES_REDIRECT;
+    }
+
+    /*
+    Pagamentos
+     */
+    public String novoPagamento() {
+        return "/privado/pagamento/formulario.xhtml" + FACES_REDIRECT;
+    }
+
+    public String editarPagamento(Long id) {
+        return "/privado/pagamento/formulario.xhtml" + FACES_REDIRECT + "&id=" + id;
+    }
+
+    public String listaPagamentos() {
+        return "/privado/pagamento/lista.xhtml" + FACES_REDIRECT;
+    }
+
+    /*
     Dentistas
      */
     public String novoDentista() {

@@ -36,7 +36,7 @@
 
                         <div class="ui-g-12">
                             <p:tabView>
-                                <p:tab title="Gerencial">
+                                <p:tab title="Administrativo">
                                     <!--Clientes-->
                                     <p:panel header="Clientes">
                                         <p:panelGrid columns="5" styleClass="ui-panelgrid-blank" class="PadWithBorder10" layout="grid">
@@ -57,8 +57,69 @@
                                         </p:panelGrid>
                                     </p:panel>
 
+                                    <!--Agendamento-->
+                                    <p:panel header="Agendamentos">
+                                        <p:panelGrid columns="5" styleClass="ui-panelgrid-blank" class="PadWithBorder10" layout="grid">
+                                            <p:selectBooleanCheckbox itemLabel="CADASTRA AGENDAMENTOS" value="#{grupoBean.permissoesUtil.cadastroAgendamentos}" />
+                                            <p:selectBooleanCheckbox itemLabel="VISUALIZA AGENDAMENTOS" value="#{grupoBean.permissoesUtil.visualizarAgendamentos}" />
+                                            <p:selectBooleanCheckbox itemLabel="ALTERA AGENDAMENTOS" value="#{grupoBean.permissoesUtil.alterarAgendamentos}" />
+                                            <p:selectBooleanCheckbox itemLabel="REMOVE AGENDAMENTOS" value="#{grupoBean.permissoesUtil.removerAgendamentos}" />
+                                        </p:panelGrid>
+                                    </p:panel>
+
+                                    <!--Ficha Anamnese-->
+                                    <p:panel header="Fichas Anamnese">
+                                        <p:panelGrid columns="5" styleClass="ui-panelgrid-blank" class="PadWithBorder10" layout="grid">
+                                            <p:selectBooleanCheckbox itemLabel="CADASTRA FICHAS ANAMNESE" value="#{grupoBean.permissoesUtil.cadastroFichaAnamnese}" />
+                                            <p:selectBooleanCheckbox itemLabel="VISUALIZA FICHAS ANAMNESE" value="#{grupoBean.permissoesUtil.visualizarFichaAnamnese}" />
+                                            <p:selectBooleanCheckbox itemLabel="ALTERA FICHAS ANAMNESE" value="#{grupoBean.permissoesUtil.alterarFichaAnamnese}" />
+                                            <p:selectBooleanCheckbox itemLabel="REMOVE FICHAS ANAMNESE" value="#{grupoBean.permissoesUtil.removerFichaAnamnese}" />
+                                        </p:panelGrid>
+                                    </p:panel>
+
+                                    <!--Procedimentos-->
+                                    <p:panel header="Procedimentos">
+                                        <p:panelGrid columns="5" styleClass="ui-panelgrid-blank" class="PadWithBorder10" layout="grid">
+                                            <p:selectBooleanCheckbox itemLabel="CADASTRA PROCEDIMENTOS" value="#{grupoBean.permissoesUtil.cadastroProcedimentos}" />
+                                            <p:selectBooleanCheckbox itemLabel="VISUALIZA PROCEDIMENTOS" value="#{grupoBean.permissoesUtil.visualizarProcedimentos}" />
+                                            <p:selectBooleanCheckbox itemLabel="ALTERA PROCEDIMENTOS" value="#{grupoBean.permissoesUtil.alterarProcedimentos}" />
+                                            <p:selectBooleanCheckbox itemLabel="REMOVE PROCEDIMENTOS" value="#{grupoBean.permissoesUtil.removerProcedimentos}" />
+                                        </p:panelGrid>
+                                    </p:panel>
+
+                                    <!--Convenios-->
+                                    <p:panel header="Convênios">
+                                        <p:panelGrid columns="5" styleClass="ui-panelgrid-blank" class="PadWithBorder10" layout="grid">
+                                            <p:selectBooleanCheckbox itemLabel="CADASTRA CONVÊNIOS" value="#{grupoBean.permissoesUtil.cadastroConvenios}" />
+                                            <p:selectBooleanCheckbox itemLabel="VISUALIZA CONVÊNIOS" value="#{grupoBean.permissoesUtil.visualizarConvenios}" />
+                                            <p:selectBooleanCheckbox itemLabel="ALTERA CONVÊNIOS" value="#{grupoBean.permissoesUtil.alterarConvenios}" />
+                                            <p:selectBooleanCheckbox itemLabel="REMOVE CONVÊNIOS" value="#{grupoBean.permissoesUtil.removerConvenios}" />
+                                        </p:panelGrid>
+                                    </p:panel>
+
                                 </p:tab>
-                                <p:tab title="Administrativo">
+                                <p:tab title="Financeiro">
+                                    <!--Pagamentos-->
+                                    <p:panel header="Pagamentos">
+                                        <p:panelGrid columns="5" styleClass="ui-panelgrid-blank" class="PadWithBorder10" layout="grid">
+                                            <p:selectBooleanCheckbox itemLabel="CADASTRA PAGAMENTOS" value="#{grupoBean.permissoesUtil.cadastroPagamentos}" />
+                                            <p:selectBooleanCheckbox itemLabel="VISUALIZA PAGAMENTOS" value="#{grupoBean.permissoesUtil.visualizarPagamentos}" />
+                                            <p:selectBooleanCheckbox itemLabel="ALTERA PAGAMENTOS" value="#{grupoBean.permissoesUtil.alterarPagamentos}" />
+                                            <p:selectBooleanCheckbox itemLabel="REMOVE PAGAMENTOS" value="#{grupoBean.permissoesUtil.removerPagamentos}" />
+                                        </p:panelGrid>
+                                    </p:panel>
+
+                                    <!--Desepesas-->
+                                    <p:panel header="Movimentacoes">
+                                        <p:panelGrid columns="5" styleClass="ui-panelgrid-blank" class="PadWithBorder10" layout="grid">
+                                            <p:selectBooleanCheckbox itemLabel="CADASTRA MOVIMENTAÇÕES" value="#{grupoBean.permissoesUtil.cadastroMovimentacoes}" />
+                                            <p:selectBooleanCheckbox itemLabel="VISUALIZA MOVIMENTAÇÕES" value="#{grupoBean.permissoesUtil.visualizarMovimentacoes}" />
+                                            <p:selectBooleanCheckbox itemLabel="ALTERA MOVIMENTAÇÕES" value="#{grupoBean.permissoesUtil.alterarMovimentacoes}" />
+                                            <p:selectBooleanCheckbox itemLabel="REMOVE MOVIMENTAÇÕES" value="#{grupoBean.permissoesUtil.removerMovimentacoes}" />
+                                        </p:panelGrid>
+                                    </p:panel>
+                                </p:tab>
+                                <p:tab title="Segurança">
                                     <!--Usuários-->
                                     <p:panel header="Usuários">
                                         <p:panelGrid columns="5" styleClass="ui-panelgrid-blank" class="PadWithBorder10" layout="grid">

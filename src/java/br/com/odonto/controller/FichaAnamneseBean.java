@@ -1,15 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.odonto.controller;
 
+import br.com.odonto.exception.DAOException;
 import br.com.odonto.facade.Facade;
+import br.com.odonto.model.Cliente;
 import br.com.odonto.model.FichaAnamnese;
-import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -17,14 +15,53 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean
 @ViewScoped
+public class FichaAnamneseBean extends DefaultBean {
 
-public class FichaAnamneseBean extends DefaultBean  {
-    
-   private Facade fachada;
-   private List<FichaAnamnese> fichaAnamnese;
-   
-   public FichaAnamneseBean() {
-       super();
-       this.fachada = new Facade();
-   }
+    private Facade fachada;
+    private FichaAnamnese fichaAnamnese;
+    private Cliente cliente;
+
+    @PostConstruct
+    private void init() {
+        String id = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
+        this.fachada = new Facade();
+        this.fichaAnamnese = new FichaAnamnese();
+        this.cliente = new Cliente();
+
+        try {
+            if (id != null) {
+                this.cliente = this.fachada.buscarCliente(Long.parseLong(id));
+                this.fichaAnamnese = this.cliente.getFichaAnamnese();
+            }
+
+        } catch (Exception ex) {
+            imprimirErro(ex.getMessage());
+        }
+    }
+
+    public void salvarFichaAnamnese() {
+        try {
+            this.fichaAnamnese = this.fachada.cadastrarFichaAnamnese(this.fichaAnamnese);
+            abrirDialog("sucess-dlg");
+        } catch (DAOException ex) {
+            imprimirErro(ex.getMessage());
+        }
+    }
+
+    public FichaAnamnese getFichaAnamnese() {
+        return fichaAnamnese;
+    }
+
+    public void setFichaAnamnese(FichaAnamnese fichaAnamnese) {
+        this.fichaAnamnese = fichaAnamnese;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
 }

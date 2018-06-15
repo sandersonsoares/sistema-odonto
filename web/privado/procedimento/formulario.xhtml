@@ -1,0 +1,80 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/template.xhtml">
+
+    <ui:define name="content">
+
+        <h:form>
+            <div class="ui-g ui-fluid">
+                <div class="ui-g-12">
+                    <p:breadCrumb>
+                        <p:menuitem value="Home" action="#{linkUtilBean.paginaPrincipal()}" immediate="true"/>
+                        <p:menuitem value="Procedimentos" action="#{linkUtilBean.listaProcedimentos()}" immediate="true"/>
+                        <p:menuitem value="#{procedimentoBean.procedimento.id == null ? 'Cadastrar' : 'Alterar'}" />
+                    </p:breadCrumb>
+                </div>
+
+                <div class="ui-g-12">
+                    <p:messages autoUpdate="true" showIcon="true" closable="true"/>
+                </div>
+
+                <div class="ui-g-12">
+                    <div class="Card">
+                        <div class="CardTopic">Dados do Procedimento</div>
+                        <div class="SeparatorFull"></div>
+
+                        <div class="ui-g-12 ui-md-6">
+                            <p:outputLabel for="nome" value="Nome"/>
+                            <p:inputText id="nome"  value="#{procedimentoBean.procedimento.nome}" required="true"/>
+                        </div>
+                        <div class="ui-g-12 ui-md-6">
+                            <p:outputLabel for="valor" value="Valor"/>
+                            <p:inputNumber id="valor" required="true" value="#{procedimentoBean.procedimento.valor}" symbol="R$ "
+                                           decimalSeparator="," thousandSeparator="."/>  
+                        </div>
+                        <div class="ui-g-12 ui-md-12">
+                            <p:outputLabel for="descricao" value="Descrição"/>
+                            <p:inputTextarea id="descricao"  value="#{procedimentoBean.procedimento.descricao}"/>
+                        </div>
+
+                        <div class="EmptyBox10"></div>
+                        <div class="Separator"></div>
+
+                        <div class="ui-g-12">
+                            <p:commandButton class="ui-button-icon-only RedButton" icon="fa fa-close"
+                                             action="#{linkUtilBean.listaProcedimentos()}" immediate="true">
+                            </p:commandButton>
+
+                            <p:commandButton class="ui-button-icon-only Fright" icon="fa #{procedimentoBean.procedimento.id == null ? 'fa-check' : 'fa-refresh'}"
+                                             action="#{procedimentoBean.salvarProcedimento()}">
+                            </p:commandButton>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </h:form>
+
+        <!--Dialog Sucesso-->
+        <p:dialog header="Sucesso" widgetVar="sucess-dlg" modal="true" draggable="false"
+                  responsive="true" width="400" resizable="false" closable="false">
+            <div class="ui-g">
+                <div class="ui-g-12 TexAlCenter">
+                    <i class="fa fa-check-circle-o Fs30 TexAlCenter"></i>
+                    <h4 class="TexAlCenter">Dados #{procedimentoBean.procedimento.id == null ? 'Salvos' : 'Alterados'} com Sucesso!</h4>
+                </div>
+                <div class="Separator"></div>
+                <div class="ui-g-12">
+                    <h:form>
+                        <p:commandButton class="GreenButton ui-g-12" value="OK"
+                                         action="#{linkUtilBean.listaProcedimentos()}" immediate="true">
+                        </p:commandButton>
+                    </h:form>
+                </div>
+            </div>
+        </p:dialog>
+
+    </ui:define>
+</ui:composition>

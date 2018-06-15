@@ -28,7 +28,7 @@
                         <div class="SeparatorFull"></div>
 
                         <div class="ui-g-12 ui-md-10">
-                            <p:inputText id="busca" value="#{agendamentoBean.busca}" placeholder="Ortodentia ou Nome do Paciente"/>
+                            <p:inputText id="busca" value="#{agendamentoBean.busca}" placeholder="Nome do Paciente ou do Dentista..."/>
                         </div>
                         <div class="ui-g-12 ui-md-2">
                             <p:commandButton actionListener="#{agendamentoBean.filtraAgendamentos()}" update=":form-table:agendamentosTable" value="Buscar" icon="fa fa-search"/>
@@ -52,8 +52,11 @@
                             <p:column headerText="Paciente">
                                 <h:outputText value="#{agendamento.paciente.nome}"/>
                             </p:column>
-                            <p:column headerText="Dentista">
-                                <h:outputText value="#{agendamento.dentista.nome}"/>
+                            <p:column headerText="Tipo de Agendamento">
+                                <h:outputText value="#{agendamento.tipoAgendamento.tipoAgendamento}"/>
+                            </p:column>
+                            <p:column headerText="Situação">
+                                <h:outputText value="#{agendamento.situacao.situacao}"/>
                             </p:column>
                             <p:column headerText="Data do Agendamento">
                                 <p:outputLabel value="#{agendamento.dataAtendimento}" >

@@ -1,19 +1,27 @@
 package br.com.odonto.facade;
 
+import br.com.odonto.business.ProcedimentoBusiness;
 import br.com.odonto.business.AgendamentoBusiness;
 import br.com.odonto.business.GrupoBusiness;
 import br.com.odonto.business.ClienteBusiness;
+import br.com.odonto.business.ConvenioBusiness;
 import br.com.odonto.business.DentistaBusiness;
+import br.com.odonto.business.MovimentacaoBusiness;
 import br.com.odonto.business.EstadoBusiness;
 import br.com.odonto.business.FichaAnamneseBusiness;
+import br.com.odonto.business.PagamentoBusiness;
 import br.com.odonto.business.UsuarioBusiness;
 import br.com.odonto.exception.DAOException;
 import br.com.odonto.model.Agendamento;
 import br.com.odonto.model.Cliente;
+import br.com.odonto.model.Convenio;
 import br.com.odonto.model.Dentista;
+import br.com.odonto.model.Movimentacao;
 import br.com.odonto.model.Estado;
 import br.com.odonto.model.FichaAnamnese;
 import br.com.odonto.model.Grupo;
+import br.com.odonto.model.Pagamento;
+import br.com.odonto.model.Procedimento;
 import br.com.odonto.model.Usuario;
 import java.io.Serializable;
 import java.util.List;
@@ -27,15 +35,23 @@ public class Facade implements Serializable {
     private FichaAnamneseBusiness fichaAnamneseBusiness;
     private DentistaBusiness dentistaBusiness;
     private AgendamentoBusiness agendamentoBusiness;
+    private ProcedimentoBusiness procedimentoBusiness;
+    private ConvenioBusiness convenioBusiness;
+    private PagamentoBusiness pagamentoBusiness;
+    private MovimentacaoBusiness movimentacaoBusiness;
 
     public Facade() {
         this.clienteBusiness = new ClienteBusiness();
         this.grupoBusiness = new GrupoBusiness();
         this.usuarioBusiness = new UsuarioBusiness();
         this.estadoBusiness = new EstadoBusiness();
+        this.agendamentoBusiness = new AgendamentoBusiness();
         this.fichaAnamneseBusiness = new FichaAnamneseBusiness();
         this.dentistaBusiness = new DentistaBusiness();
-        this.agendamentoBusiness = new AgendamentoBusiness();
+        this.convenioBusiness = new ConvenioBusiness();
+        this.pagamentoBusiness = new PagamentoBusiness();
+        this.movimentacaoBusiness = new MovimentacaoBusiness();
+        this.procedimentoBusiness = new ProcedimentoBusiness();
 
     }
 
@@ -54,6 +70,74 @@ public class Facade implements Serializable {
 
     public List<Cliente> listarClientes() throws DAOException {
         return clienteBusiness.listar();
+    }
+
+    // Procedimento
+    public Procedimento cadastrarProcedimento(Procedimento procedimento) throws DAOException {
+        return procedimentoBusiness.salvar(procedimento);
+    }
+
+    public Procedimento removerProcedimento(Procedimento procedimento) throws DAOException {
+        return procedimentoBusiness.remover(procedimento);
+    }
+
+    public Procedimento buscarProcedimento(Long id) throws DAOException {
+        return procedimentoBusiness.buscar(id);
+    }
+
+    public List<Procedimento> listarProcedimentos() throws DAOException {
+        return procedimentoBusiness.listar();
+    }
+
+    // Pagamento
+    public Pagamento cadastrarPagamento(Pagamento pagamento) throws DAOException {
+        return pagamentoBusiness.salvar(pagamento);
+    }
+
+    public Pagamento removerPagamento(Pagamento pagamento) throws DAOException {
+        return pagamentoBusiness.remover(pagamento);
+    }
+
+    public Pagamento buscarPagamento(Long id) throws DAOException {
+        return pagamentoBusiness.buscar(id);
+    }
+
+    public List<Pagamento> listarPagamentos() throws DAOException {
+        return pagamentoBusiness.listar();
+    }
+
+    // Movimentacao
+    public Movimentacao cadastrarMovimentacao(Movimentacao movimentacao) throws DAOException {
+        return movimentacaoBusiness.salvar(movimentacao);
+    }
+
+    public Movimentacao removerMovimentacao(Movimentacao movimentacao) throws DAOException {
+        return movimentacaoBusiness.remover(movimentacao);
+    }
+
+    public Movimentacao buscarMovimentacao(Long id) throws DAOException {
+        return movimentacaoBusiness.buscar(id);
+    }
+
+    public List<Movimentacao> listarMovimentacaos() throws DAOException {
+        return movimentacaoBusiness.listar();
+    }
+
+    // Convenio
+    public Convenio cadastrarConvenio(Convenio procedimento) throws DAOException {
+        return convenioBusiness.salvar(procedimento);
+    }
+
+    public Convenio removerConvenio(Convenio procedimento) throws DAOException {
+        return convenioBusiness.remover(procedimento);
+    }
+
+    public Convenio buscarConvenio(Long id) throws DAOException {
+        return convenioBusiness.buscar(id);
+    }
+
+    public List<Convenio> listarConvenios() throws DAOException {
+        return convenioBusiness.listar();
     }
 
     // Dentista
@@ -150,19 +234,19 @@ public class Facade implements Serializable {
     }
 
     // Ficha de Anamnese
-    public FichaAnamnese cadastrarFichaAnamnese(FichaAnamnese fichaAnamnese) throws Exception {
+    public FichaAnamnese cadastrarFichaAnamnese(FichaAnamnese fichaAnamnese) throws DAOException {
         return fichaAnamneseBusiness.salvar(fichaAnamnese);
     }
 
-    public FichaAnamnese removerFichaAnamnese(FichaAnamnese fichaAnamnese) throws Exception {
+    public FichaAnamnese removerFichaAnamnese(FichaAnamnese fichaAnamnese) throws DAOException {
         return fichaAnamneseBusiness.remover(fichaAnamnese);
     }
 
-    public FichaAnamnese buscarFichaAnamnese(Long id) throws Exception {
+    public FichaAnamnese buscarFichaAnamnese(Long id) throws DAOException {
         return fichaAnamneseBusiness.buscar(id);
     }
 
-    public List<FichaAnamnese> listarFichaAnamnese() throws Exception {
+    public List<FichaAnamnese> listarFichaAnamnese() throws DAOException {
         return fichaAnamneseBusiness.listar();
     }
 

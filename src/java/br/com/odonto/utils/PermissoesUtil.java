@@ -27,6 +27,48 @@ public class PermissoesUtil {
     private boolean alterarDentistas;
     private boolean removerDentistas;
     /*
+    Agendamentos
+     */
+    private boolean cadastroAgendamentos;
+    private boolean visualizarAgendamentos;
+    private boolean alterarAgendamentos;
+    private boolean removerAgendamentos;
+    /*
+    Ficha Anamnese
+     */
+    private boolean cadastroFichaAnamnese;
+    private boolean visualizarFichaAnamnese;
+    private boolean alterarFichaAnamnese;
+    private boolean removerFichaAnamnese;
+    /*
+    Procedimentos
+     */
+    private boolean cadastroProcedimentos;
+    private boolean visualizarProcedimentos;
+    private boolean alterarProcedimentos;
+    private boolean removerProcedimentos;
+    /*
+    Pagamentos
+     */
+    private boolean cadastroPagamentos;
+    private boolean visualizarPagamentos;
+    private boolean alterarPagamentos;
+    private boolean removerPagamentos;
+    /*
+    Movimentacoes
+     */
+    private boolean cadastroMovimentacoes;
+    private boolean visualizarMovimentacoes;
+    private boolean alterarMovimentacoes;
+    private boolean removerMovimentacoes;
+    /*
+    Convenios
+     */
+    private boolean cadastroConvenios;
+    private boolean visualizarConvenios;
+    private boolean alterarConvenios;
+    private boolean removerConvenios;
+    /*
     Usuários
      */
     private boolean cadastroUsuarios;
@@ -111,6 +153,96 @@ public class PermissoesUtil {
         if (removerGrupos) {
             permissoes.add(Permissoes.ROLE_REMOVER_GRUPOS);
         }
+        /*
+          Agendamentos
+         */
+        if (cadastroAgendamentos) {
+            permissoes.add(Permissoes.ROLE_CADASTRAR_AGENDAMENTOS);
+        }
+        if (visualizarAgendamentos) {
+            permissoes.add(Permissoes.ROLE_VISUALIZAR_AGENDAMENTOS);
+        }
+        if (alterarAgendamentos) {
+            permissoes.add(Permissoes.ROLE_ALTERAR_AGENDAMENTOS);
+        }
+        if (removerAgendamentos) {
+            permissoes.add(Permissoes.ROLE_REMOVER_AGENDAMENTOS);
+        }
+        /*
+          Ficha Anamnese
+         */
+        if (cadastroFichaAnamnese) {
+            permissoes.add(Permissoes.ROLE_CADASTRAR_FICHA_ANAMNESE);
+        }
+        if (visualizarFichaAnamnese) {
+            permissoes.add(Permissoes.ROLE_VISUALIZAR_FICHA_ANAMNESE);
+        }
+        if (alterarFichaAnamnese) {
+            permissoes.add(Permissoes.ROLE_ALTERAR_FICHA_ANAMNESE);
+        }
+        if (removerFichaAnamnese) {
+            permissoes.add(Permissoes.ROLE_REMOVER_FICHA_ANAMNESE);
+        }
+        /*
+          Procedimentos
+         */
+        if (cadastroProcedimentos) {
+            permissoes.add(Permissoes.ROLE_CADASTRAR_PROCEDIMENTOS);
+        }
+        if (visualizarProcedimentos) {
+            permissoes.add(Permissoes.ROLE_VISUALIZAR_PROCEDIMENTOS);
+        }
+        if (alterarProcedimentos) {
+            permissoes.add(Permissoes.ROLE_ALTERAR_PROCEDIMENTOS);
+        }
+        if (removerProcedimentos) {
+            permissoes.add(Permissoes.ROLE_REMOVER_PROCEDIMENTOS);
+        }
+        /*
+          Pagamentos
+         */
+        if (cadastroPagamentos) {
+            permissoes.add(Permissoes.ROLE_CADASTRAR_PAGAMENTOS);
+        }
+        if (visualizarPagamentos) {
+            permissoes.add(Permissoes.ROLE_VISUALIZAR_PAGAMENTOS);
+        }
+        if (alterarPagamentos) {
+            permissoes.add(Permissoes.ROLE_ALTERAR_PAGAMENTOS);
+        }
+        if (removerPagamentos) {
+            permissoes.add(Permissoes.ROLE_REMOVER_PAGAMENTOS);
+        }
+        /*
+          Movimentacoes
+         */
+        if (cadastroMovimentacoes) {
+            permissoes.add(Permissoes.ROLE_CADASTRAR_MOVIMENTACAO);
+        }
+        if (visualizarMovimentacoes) {
+            permissoes.add(Permissoes.ROLE_VISUALIZAR_MOVIMENTACAO);
+        }
+        if (alterarMovimentacoes) {
+            permissoes.add(Permissoes.ROLE_ALTERAR_MOVIMENTACAO);
+        }
+        if (removerMovimentacoes) {
+            permissoes.add(Permissoes.ROLE_REMOVER_MOVIMENTACAO);
+        }
+        /*
+          Convenios
+         */
+        if (cadastroConvenios) {
+            permissoes.add(Permissoes.ROLE_CADASTRAR_CONVENIOS);
+        }
+        if (visualizarConvenios) {
+            permissoes.add(Permissoes.ROLE_VISUALIZAR_CONVENIOS);
+        }
+        if (alterarConvenios) {
+            permissoes.add(Permissoes.ROLE_ALTERAR_CONVENIOS);
+        }
+        if (removerConvenios) {
+            permissoes.add(Permissoes.ROLE_REMOVER_CONVENIOS);
+        }
 
         permissoes.add(Permissoes.ROLE_ACESSO_SISTEMA);
 
@@ -181,6 +313,96 @@ public class PermissoesUtil {
         }
         if (permissoes.contains(Permissoes.ROLE_REMOVER_GRUPOS)) {
             removerGrupos = true;
+        }
+        /*
+          Agendamentos
+         */
+        if (permissoes.contains(Permissoes.ROLE_CADASTRAR_AGENDAMENTOS)) {
+            cadastroAgendamentos = true;
+        }
+        if (permissoes.contains(Permissoes.ROLE_VISUALIZAR_AGENDAMENTOS)) {
+            visualizarAgendamentos = true;
+        }
+        if (permissoes.contains(Permissoes.ROLE_ALTERAR_AGENDAMENTOS)) {
+            alterarAgendamentos = true;
+        }
+        if (permissoes.contains(Permissoes.ROLE_REMOVER_AGENDAMENTOS)) {
+            removerAgendamentos = true;
+        }
+        /*
+          Ficha Anamnese
+         */
+        if (permissoes.contains(Permissoes.ROLE_CADASTRAR_FICHA_ANAMNESE)) {
+            cadastroFichaAnamnese = true;
+        }
+        if (permissoes.contains(Permissoes.ROLE_VISUALIZAR_FICHA_ANAMNESE)) {
+            visualizarFichaAnamnese = true;
+        }
+        if (permissoes.contains(Permissoes.ROLE_ALTERAR_FICHA_ANAMNESE)) {
+            alterarFichaAnamnese = true;
+        }
+        if (permissoes.contains(Permissoes.ROLE_REMOVER_FICHA_ANAMNESE)) {
+            removerFichaAnamnese = true;
+        }
+        /*
+          Procedimentos
+         */
+        if (permissoes.contains(Permissoes.ROLE_CADASTRAR_PROCEDIMENTOS)) {
+            cadastroProcedimentos = true;
+        }
+        if (permissoes.contains(Permissoes.ROLE_VISUALIZAR_PROCEDIMENTOS)) {
+            visualizarProcedimentos = true;
+        }
+        if (permissoes.contains(Permissoes.ROLE_ALTERAR_PROCEDIMENTOS)) {
+            alterarProcedimentos = true;
+        }
+        if (permissoes.contains(Permissoes.ROLE_REMOVER_PROCEDIMENTOS)) {
+            removerProcedimentos = true;
+        }
+        /*
+          Pagamentos
+         */
+        if (permissoes.contains(Permissoes.ROLE_CADASTRAR_PAGAMENTOS)) {
+            cadastroPagamentos = true;
+        }
+        if (permissoes.contains(Permissoes.ROLE_VISUALIZAR_PAGAMENTOS)) {
+            visualizarPagamentos = true;
+        }
+        if (permissoes.contains(Permissoes.ROLE_ALTERAR_PAGAMENTOS)) {
+            alterarPagamentos = true;
+        }
+        if (permissoes.contains(Permissoes.ROLE_REMOVER_PAGAMENTOS)) {
+            removerPagamentos = true;
+        }
+        /*
+          Movimentacoes
+         */
+        if (permissoes.contains(Permissoes.ROLE_CADASTRAR_MOVIMENTACAO)) {
+            cadastroMovimentacoes = true;
+        }
+        if (permissoes.contains(Permissoes.ROLE_VISUALIZAR_MOVIMENTACAO)) {
+            visualizarMovimentacoes = true;
+        }
+        if (permissoes.contains(Permissoes.ROLE_ALTERAR_MOVIMENTACAO)) {
+            alterarMovimentacoes = true;
+        }
+        if (permissoes.contains(Permissoes.ROLE_REMOVER_MOVIMENTACAO)) {
+            removerMovimentacoes = true;
+        }
+        /*
+          Convenios
+         */
+        if (permissoes.contains(Permissoes.ROLE_CADASTRAR_CONVENIOS)) {
+            cadastroConvenios = true;
+        }
+        if (permissoes.contains(Permissoes.ROLE_VISUALIZAR_CONVENIOS)) {
+            visualizarConvenios = true;
+        }
+        if (permissoes.contains(Permissoes.ROLE_ALTERAR_CONVENIOS)) {
+            alterarConvenios = true;
+        }
+        if (permissoes.contains(Permissoes.ROLE_REMOVER_CONVENIOS)) {
+            removerConvenios = true;
         }
     }
 
@@ -314,5 +536,197 @@ public class PermissoesUtil {
     public void setRemoverDentistas(boolean removerDentistas) {
         this.removerDentistas = removerDentistas;
     }
-    
+
+    public boolean isCadastroAgendamentos() {
+        return cadastroAgendamentos;
+    }
+
+    public void setCadastroAgendamentos(boolean cadastroAgendamentos) {
+        this.cadastroAgendamentos = cadastroAgendamentos;
+    }
+
+    public boolean isVisualizarAgendamentos() {
+        return visualizarAgendamentos;
+    }
+
+    public void setVisualizarAgendamentos(boolean visualizarAgendamentos) {
+        this.visualizarAgendamentos = visualizarAgendamentos;
+    }
+
+    public boolean isAlterarAgendamentos() {
+        return alterarAgendamentos;
+    }
+
+    public void setAlterarAgendamentos(boolean alterarAgendamentos) {
+        this.alterarAgendamentos = alterarAgendamentos;
+    }
+
+    public boolean isRemoverAgendamentos() {
+        return removerAgendamentos;
+    }
+
+    public void setRemoverAgendamentos(boolean removerAgendamentos) {
+        this.removerAgendamentos = removerAgendamentos;
+    }
+
+    public boolean isCadastroFichaAnamnese() {
+        return cadastroFichaAnamnese;
+    }
+
+    public void setCadastroFichaAnamnese(boolean cadastroFichaAnamnese) {
+        this.cadastroFichaAnamnese = cadastroFichaAnamnese;
+    }
+
+    public boolean isVisualizarFichaAnamnese() {
+        return visualizarFichaAnamnese;
+    }
+
+    public void setVisualizarFichaAnamnese(boolean visualizarFichaAnamnese) {
+        this.visualizarFichaAnamnese = visualizarFichaAnamnese;
+    }
+
+    public boolean isAlterarFichaAnamnese() {
+        return alterarFichaAnamnese;
+    }
+
+    public void setAlterarFichaAnamnese(boolean alterarFichaAnamnese) {
+        this.alterarFichaAnamnese = alterarFichaAnamnese;
+    }
+
+    public boolean isRemoverFichaAnamnese() {
+        return removerFichaAnamnese;
+    }
+
+    public void setRemoverFichaAnamnese(boolean removerFichaAnamnese) {
+        this.removerFichaAnamnese = removerFichaAnamnese;
+    }
+
+    public boolean isCadastroProcedimentos() {
+        return cadastroProcedimentos;
+    }
+
+    public void setCadastroProcedimentos(boolean cadastroProcedimentos) {
+        this.cadastroProcedimentos = cadastroProcedimentos;
+    }
+
+    public boolean isVisualizarProcedimentos() {
+        return visualizarProcedimentos;
+    }
+
+    public void setVisualizarProcedimentos(boolean visualizarProcedimentos) {
+        this.visualizarProcedimentos = visualizarProcedimentos;
+    }
+
+    public boolean isAlterarProcedimentos() {
+        return alterarProcedimentos;
+    }
+
+    public void setAlterarProcedimentos(boolean alterarProcedimentos) {
+        this.alterarProcedimentos = alterarProcedimentos;
+    }
+
+    public boolean isRemoverProcedimentos() {
+        return removerProcedimentos;
+    }
+
+    public void setRemoverProcedimentos(boolean removerProcedimentos) {
+        this.removerProcedimentos = removerProcedimentos;
+    }
+
+    public boolean isCadastroPagamentos() {
+        return cadastroPagamentos;
+    }
+
+    public void setCadastroPagamentos(boolean cadastroPagamentos) {
+        this.cadastroPagamentos = cadastroPagamentos;
+    }
+
+    public boolean isVisualizarPagamentos() {
+        return visualizarPagamentos;
+    }
+
+    public void setVisualizarPagamentos(boolean visualizarPagamentos) {
+        this.visualizarPagamentos = visualizarPagamentos;
+    }
+
+    public boolean isAlterarPagamentos() {
+        return alterarPagamentos;
+    }
+
+    public void setAlterarPagamentos(boolean alterarPagamentos) {
+        this.alterarPagamentos = alterarPagamentos;
+    }
+
+    public boolean isRemoverPagamentos() {
+        return removerPagamentos;
+    }
+
+    public void setRemoverPagamentos(boolean removerPagamentos) {
+        this.removerPagamentos = removerPagamentos;
+    }
+
+    public boolean isCadastroMovimentacoes() {
+        return cadastroMovimentacoes;
+    }
+
+    public void setCadastroMovimentacoes(boolean cadastroMovimentacoes) {
+        this.cadastroMovimentacoes = cadastroMovimentacoes;
+    }
+
+    public boolean isVisualizarMovimentacoes() {
+        return visualizarMovimentacoes;
+    }
+
+    public void setVisualizarMovimentacoes(boolean visualizarMovimentacoes) {
+        this.visualizarMovimentacoes = visualizarMovimentacoes;
+    }
+
+    public boolean isAlterarMovimentacoes() {
+        return alterarMovimentacoes;
+    }
+
+    public void setAlterarMovimentacoes(boolean alterarMovimentacoes) {
+        this.alterarMovimentacoes = alterarMovimentacoes;
+    }
+
+    public boolean isRemoverMovimentacoes() {
+        return removerMovimentacoes;
+    }
+
+    public void setRemoverMovimentacoes(boolean removerMovimentacoes) {
+        this.removerMovimentacoes = removerMovimentacoes;
+    }
+
+    public boolean isCadastroConvenios() {
+        return cadastroConvenios;
+    }
+
+    public void setCadastroConvenios(boolean cadastroConvenios) {
+        this.cadastroConvenios = cadastroConvenios;
+    }
+
+    public boolean isVisualizarConvenios() {
+        return visualizarConvenios;
+    }
+
+    public void setVisualizarConvenios(boolean visualizarConvenios) {
+        this.visualizarConvenios = visualizarConvenios;
+    }
+
+    public boolean isAlterarConvenios() {
+        return alterarConvenios;
+    }
+
+    public void setAlterarConvenios(boolean alterarConvenios) {
+        this.alterarConvenios = alterarConvenios;
+    }
+
+    public boolean isRemoverConvenios() {
+        return removerConvenios;
+    }
+
+    public void setRemoverConvenios(boolean removerConvenios) {
+        this.removerConvenios = removerConvenios;
+    }
+
 }

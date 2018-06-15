@@ -1,175 +1,150 @@
 package br.com.odonto.model;
 
-import java.io.Serializable; 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Size;
 
 @Entity
 public class FichaAnamnese implements Serializable {
 
     @Id
-    @GeneratedValue
-    
-    private Long ID;   
-    @Size(max = 255)
-    private String queixaDoencaAtual ;
-    private String algumaDoenca;
-    private String seEmTratamento;
-    private Boolean gravidez;
-    @Size(max = 255)
-    private String medicacao;
-    private Boolean operado;
-    private Boolean cicatrizacao;
-    private Boolean anestesia;
-    private Boolean hemorragia;
-    private Boolean febreReumatica;
-    @Size(max = 255)
-    private String problemaCardiaco;
-    private Boolean diabetes;
-    private Boolean hipertensaoArterial;
-    @Size(max = 255)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    private boolean queixaDoencaAtual;
+    private boolean algumaDoenca;
+    private boolean seEmTratamento;
+    private boolean gravidez;
+    private boolean medicacao;
+    private boolean operado;
+    private boolean cicatrizacao;
+    private boolean anestesia;
+    private boolean hemorragia;
+    private boolean febreReumatica;
+    private boolean problemaCardiaco;
+    private boolean diabetes;
+    private boolean hipertensaoArterial;
     private String habitos;
     private String antecedentes;
 
-    public Long getID() {
-        return ID;
+    public Long getId() {
+        return id;
     }
 
-    public void setID(Long ID) {
-        this.ID = ID;
+    public void setId(Long id) {
+        this.id = id;
     }
 
- 
-    public String getQueixaDoencaAtual() {
+    public boolean isQueixaDoencaAtual() {
         return queixaDoencaAtual;
     }
 
-  
-    public void setQueixaDoencaAtual(String queixaDoencaAtual) {
+    public void setQueixaDoencaAtual(boolean queixaDoencaAtual) {
         this.queixaDoencaAtual = queixaDoencaAtual;
     }
 
-  
-    public String getAlgumaDoenca() {
+    public boolean isAlgumaDoenca() {
         return algumaDoenca;
     }
 
-   
-    public void setAlgumaDoenca(String algumaDoenca) {
+    public void setAlgumaDoenca(boolean algumaDoenca) {
         this.algumaDoenca = algumaDoenca;
     }
 
-    public String getSeEmTratamento() {
+    public boolean isSeEmTratamento() {
         return seEmTratamento;
     }
 
-    public void setSeEmTratamento(String seEmTratamento) {
+    public void setSeEmTratamento(boolean seEmTratamento) {
         this.seEmTratamento = seEmTratamento;
     }
 
-  
-    public Boolean getGravidez() {
+    public boolean isGravidez() {
         return gravidez;
     }
 
-    public void setGravidez(Boolean gravidez) {
+    public void setGravidez(boolean gravidez) {
         this.gravidez = gravidez;
     }
 
-    public String getMedicacao() {
+    public boolean isMedicacao() {
         return medicacao;
     }
 
-    public void setMedicacao(String medicacao) {
+    public void setMedicacao(boolean medicacao) {
         this.medicacao = medicacao;
     }
 
-    public Boolean getOperado() {
+    public boolean isOperado() {
         return operado;
     }
 
-  
-    public void setOperado(Boolean operado) {
+    public void setOperado(boolean operado) {
         this.operado = operado;
     }
 
- 
-    public Boolean getCicatrizacao() {
+    public boolean isCicatrizacao() {
         return cicatrizacao;
     }
 
- 
-    public void setCicatrizacao(Boolean cicatrizacao) {
+    public void setCicatrizacao(boolean cicatrizacao) {
         this.cicatrizacao = cicatrizacao;
     }
 
-  
-    public Boolean getAnestesia() {
+    public boolean isAnestesia() {
         return anestesia;
     }
 
-    
-    public void setAnestesia(Boolean anestesia) {
+    public void setAnestesia(boolean anestesia) {
         this.anestesia = anestesia;
     }
 
-  
-    public Boolean getHemorragia() {
+    public boolean isHemorragia() {
         return hemorragia;
     }
 
-   
-    public void setHemorragia(Boolean hemorragia) {
+    public void setHemorragia(boolean hemorragia) {
         this.hemorragia = hemorragia;
     }
 
-    
-    public Boolean getFebreReumatica() {
+    public boolean isFebreReumatica() {
         return febreReumatica;
     }
 
-    public void setFebreReumatica(Boolean febreReumatica) {
+    public void setFebreReumatica(boolean febreReumatica) {
         this.febreReumatica = febreReumatica;
     }
 
-    
-    public String getProblemaCardiaco() {
+    public boolean isProblemaCardiaco() {
         return problemaCardiaco;
     }
 
-    
-    public void setProblemaCardiaco(String problemaCardiaco) {
+    public void setProblemaCardiaco(boolean problemaCardiaco) {
         this.problemaCardiaco = problemaCardiaco;
     }
 
-  
-    public Boolean getDiabetes() {
+    public boolean isDiabetes() {
         return diabetes;
     }
 
-   
-    public void setDiabetes(Boolean diabetes) {
+    public void setDiabetes(boolean diabetes) {
         this.diabetes = diabetes;
     }
 
-   
-    public Boolean getHipertensaoArterial() {
+    public boolean isHipertensaoArterial() {
         return hipertensaoArterial;
     }
 
-   
-    public void setHipertensaoArterial(Boolean hipertensaoArterial) {
+    public void setHipertensaoArterial(boolean hipertensaoArterial) {
         this.hipertensaoArterial = hipertensaoArterial;
     }
 
-   
     public String getHabitos() {
         return habitos;
     }
 
-    
     public void setHabitos(String habitos) {
         this.habitos = habitos;
     }
@@ -178,9 +153,8 @@ public class FichaAnamnese implements Serializable {
         return antecedentes;
     }
 
-   
     public void setAntecedentes(String antecedentes) {
         this.antecedentes = antecedentes;
     }
-            
+
 }

@@ -30,8 +30,8 @@
                             <h4>Protocolo: #{agendamentoBean.agendamento.protocolo}</h4>
                         </div>
                         <div class="ui-g-12 ui-md-4">
-                            <p:outputLabel for="dateAgendamento" value="Data do Agendamento" />
-                            <p:calendar id="dateAgendamento"  value="#{agendamentoBean.agendamento.dataAtendimento}" navigator="true" pattern="dd/MM/yyyy HH:mm:ss" showOn="button"/>
+                            <p:outputLabel for="dateAgendamento" value="Data do Agendamento"/>
+                            <p:calendar id="dateAgendamento"  value="#{agendamentoBean.agendamento.dataAtendimento}" required="true" navigator="true" pattern="dd/MM/yyyy HH:mm:ss" showOn="button"/>
                         </div>
                         <div class="ui-g-12 ui-md-4">
                             <p:outputLabel for="dateInicio" value="Data e Hora de Início" />
@@ -43,7 +43,7 @@
                         </div>
                         <div class="ui-g-12 ui-md-6">
                             <p:outputLabel for="cliente" value="Cliente" />
-                            <p:selectOneMenu  id="cliente" value="#{agendamentoBean.agendamento.paciente}"
+                            <p:selectOneMenu  id="cliente" value="#{agendamentoBean.agendamento.paciente}" required="true"
                                               converter="ClienteConverter">
                                 <f:selectItem  itemDisabled="true" itemLabel="Selecione"/>
                                 <f:selectItems value="#{agendamentoBean.clientes}" var="cliente" itemValue="#{cliente}" itemLabel="#{cliente.nome}"/>
@@ -51,15 +51,70 @@
                         </div>
                         <div class="ui-g-12 ui-md-6">
                             <p:outputLabel for="dentista" value="Dentista" />
-                            <p:selectOneMenu  id="dentista" value="#{agendamentoBean.agendamento.dentista}"
+                            <p:selectOneMenu  id="dentista" required="true" value="#{agendamentoBean.agendamento.dentista}"
                                               converter="DentistaConverter">
                                 <f:selectItem  itemDisabled="true" itemLabel="Selecione"/>
                                 <f:selectItems value="#{agendamentoBean.dentistas}" var="dentista" itemValue="#{dentista}" itemLabel="#{dentista.nome}"/>
                             </p:selectOneMenu>
                         </div>
+                        <div class="ui-g-12 ui-md-4">
+                            <p:outputLabel for="tipoAgendamento" value="Tipo de Agendamento"/>
+                            <p:selectOneMenu  id="tipoAgendamento" required="true" value="#{agendamentoBean.agendamento.tipoAgendamento}">
+                                <f:selectItem  itemDisabled="true" itemLabel="Selecione"/>
+                                <f:selectItems value="#{agendamentoBean.listarTipoAgendamentos}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.tipoAgendamento}"/>
+                            </p:selectOneMenu>
+                        </div>
+                        <div class="ui-g-12 ui-md-4">
+                            <p:outputLabel for="situacao" value="Situação"/>
+                            <p:selectOneMenu  id="situacao" value="#{agendamentoBean.agendamento.situacao}" required="true">
+                                <f:selectItem  itemDisabled="true" itemLabel="Selecione"/>
+                                <f:selectItems value="#{agendamentoBean.listarSituacao}" var="situacao" itemValue="#{situacao}" itemLabel="#{situacao.situacao}"/>
+                            </p:selectOneMenu>
+                        </div>
+                        <div class="ui-g-12 ui-md-4">
+                            <p:outputLabel for="motivo" value="Motivo" />
+                            <p:selectOneMenu  id="motivo" value="#{agendamentoBean.agendamento.motivo}" required="true">
+                                <f:selectItem  itemDisabled="true" itemLabel="Selecione"/>
+                                <f:selectItems value="#{agendamentoBean.listarMotivos}" var="motivo" itemValue="#{motivo}" itemLabel="#{motivo.motivo}"/>
+                            </p:selectOneMenu>
+                        </div>
+
+                        <div class="ui-g-11">
+                            <p:outputLabel for="procedimentos" value="Procedimentos" />
+                            <p:selectOneMenu  id="procedimentos" required="true" value="#{agendamentoBean.procedimentoSelecionado}"
+                                              converter="ProcedimentoConverter">
+                                <f:selectItem  itemDisabled="true" itemLabel="Selecione"/>
+                                <f:selectItems value="#{agendamentoBean.procedimentos}" var="procedimento" itemValue="#{procedimento}" itemLabel="#{procedimento.nome}"/>
+                            </p:selectOneMenu>
+                        </div>
+                        <div class="ui-g-1" style="padding-top: 25px">
+                            <p:commandButton class="GreenButton" icon="fa fa-plus" immediate="true"
+                                             actionListener="#{agendamentoBean.adicionarProcedimento()}" update="procedimentosTable">
+                                <p:ajax process="procedimentos @this"/>
+                            </p:commandButton>
+                        </div>
                         <div class="ui-g-12 ui-md-12">
-                            <p:outputLabel for="ortodontia" value="Ortodontia"/>
-                            <p:inputText  id="ortodontia" value="#{agendamentoBean.agendamento.ortodontia}" required="true" requiredMessage="Campo Ortodontia está vazio!"/>
+                            <p:dataTable id="procedimentosTable" value="#{agendamentoBean.agendamento.procedimentos}" var="procedimento" reflow="true" rowStyleClass="TexAlCenter">
+                                <p:column headerText="Nome">
+                                    <h:outputText value="#{procedimento.nome}"/>
+                                </p:column>
+                                <p:column headerText="Valor">
+                                    <h:outputText value="#{procedimento.valor}">
+                                        <f:convertNumber currencySymbol="R$ " type="currency"/>
+                                    </h:outputText>
+                                </p:column>
+                                <p:column headerText="Remover" width="150">
+                                    <p:commandButton class="ui-button-icon-only RedButton" icon="fa fa-trash" immediate="true" update="procedimentosTable"
+                                                     action="#{agendamentoBean.removerProcedimento(procedimento)}">
+                                    </p:commandButton>
+                                </p:column>
+                                <f:facet name="footer">
+                                    <p:outputLabel value="Valor Total: " class="Fs19"/>
+                                    <h:outputText value="#{agendamentoBean.valorTotal}" class="Red Fs19 right">
+                                        <f:convertNumber currencySymbol="R$ " type="currency"/>
+                                    </h:outputText>
+                                </f:facet>
+                            </p:dataTable>
                         </div>
 
                         <div class="EmptyBox10"></div>

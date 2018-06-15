@@ -57,22 +57,47 @@
                 </li>
                 <li>
                     <h:commandLink action="#{linkUtilBean.listaClientes()}" rendered="#{request.isUserInRole('ROLE_VISUALIZAR_CLIENTES')}">
-                        <i class="icon-user MarRight10"></i> Clientes
+                        <i class="icon-user2 MarRight10"></i> Clientes
                     </h:commandLink>
                 </li>
                 <li>
                     <h:commandLink action="#{linkUtilBean.listaDentistas()}" rendered="#{request.isUserInRole('ROLE_VISUALIZAR_DENTISTAS')}">
-                        <i class="icon-user MarRight10"></i> Dentistas
+                        <i class="fa fa-stethoscope Fs16 MarRight10"></i> Dentistas
                     </h:commandLink>
                 </li>
                 <li>
-                    <h:commandLink action="#{linkUtilBean.listaAgendamentos()}">
-                        <i class="icon-user MarRight10"></i> Agendamento
+                    <h:commandLink action="#{linkUtilBean.listaAgendamentos()}" rendered="#{request.isUserInRole('ROLE_VISUALIZAR_AGENDAMENTOS')}">
+                        <i class="icon-calendar MarRight10"></i> Agendamento
+                    </h:commandLink>
+                </li>
+                <li>
+                    <h:commandLink action="#{linkUtilBean.listaProcedimentos()}" rendered="#{request.isUserInRole('ROLE_VISUALIZAR_PROCEDIMENTOS')}">
+                        <i class="icon-pen-alt2 MarRight10"></i> Procedimento
+                    </h:commandLink>
+                </li>
+                <li>
+                    <h:commandLink action="#{linkUtilBean.listaFichasAnamnese()}" rendered="#{request.isUserInRole('ROLE_VISUALIZAR_FICHA_ANAMNESE')}">
+                        <i class="icon-document-alt-stroke MarRight10"></i> Fichas Anamnese
+                    </h:commandLink>
+                </li>
+                <li>
+                    <h:commandLink action="#{linkUtilBean.listaConvenios()}" rendered="#{request.isUserInRole('ROLE_VISUALIZAR_CONVENIOS')}">
+                        <i class="icon-tag-stroke MarRight10"></i> Convênio
+                    </h:commandLink>
+                </li>
+                <li>
+                    <h:commandLink action="#{linkUtilBean.listaPagamentos()}" rendered="#{request.isUserInRole('ROLE_VISUALIZAR_PAGAMENTOS')}">
+                        <i class="fa fa-money Fs16 MarRight10"></i> Pagamentos
+                    </h:commandLink>
+                </li>
+                 <li>
+                     <h:commandLink action="#{linkUtilBean.listaDespesas()}" rendered="#{request.isUserInRole('ROLE_VISUALIZAR_DESPESAS')}">
+                        <i class="icon-moneybag Fs18 MarRight10"></i> Despesas
                     </h:commandLink>
                 </li>
                 <li>
                     <p:commandLink class="menulink" action="#{linkUtilBean.listaUsuarios()}" rendered="#{request.isUserInRole('ROLE_VISUALIZAR_USUARIOS')}">
-                        <i class="icon-user2 MarRight10"></i> Usuários
+                        <i class="icon-user MarRight10"></i> Usuários
                     </p:commandLink>
                 </li>
                 <li>

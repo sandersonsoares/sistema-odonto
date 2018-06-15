@@ -20,7 +20,7 @@ public class FichaAnamneseBusiness implements Serializable {
     }
     
     public synchronized FichaAnamnese salvar(FichaAnamnese fichaAnamnese) throws DAOException {
-        if (fichaAnamnese.getID() != null) {
+        if (fichaAnamnese.getId() != null) {
             return fichaAnamneseDAO.update(fichaAnamnese);
         } else {
             return fichaAnamneseDAO.save(fichaAnamnese);
